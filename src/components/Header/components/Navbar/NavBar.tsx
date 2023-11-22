@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Menubar } from "primereact/menubar";
 import { MenuItem } from "primereact/menuitem";
 import { TabMenu } from "primereact/tabmenu";
 

@@ -8,7 +8,7 @@ import { Button } from "primereact/button";
 function InfoLine() {
   return (
     <div className="info-line">
-      <div className="flex gap-2 text-2xl text-primary">Online Runner</div>
+      <div className="flex gap-2 text-2xl text-primary">Run connect</div>
       <div
         className="flex gap-2 flex-shrink-0 overflow-hidden p-1"
         style={{ background: "var(--surface-card)" }}
