@@ -1,0 +1,24 @@
+.header {
+  height: 8rem;
+  z-index: 997;
+  width: 100%;
+  background-color: var(--surface-card);
+  transition: left 0.2s;
+  display: flex;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.02), 0 0 2px rgba(0, 0, 0, 0.05),
+    0 1px 4px rgba(0, 0, 0, 0.08);
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.p-menubar {
+  width: 100%;
+  border: none;
+  background: var(--surface-card);
+  gap: 1rem;
+}
+
+.p-menubar .p-menubar-custom,
+.p-menubar .p-menubar-end {
+  align-items: end;
+}

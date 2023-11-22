@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  position: relative;
+}
+
+.error {
+  position: absolute;
+  top: 5rem;
+  font-size: 0.75rem;
+  color: red;
+}
