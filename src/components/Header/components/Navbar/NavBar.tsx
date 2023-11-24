@@ -9,12 +9,10 @@ function NavBar() {
   const items: MenuItem[] = [
     {
       label: "Главная",
-      icon: "pi pi-fw pi-bitcoin",
       command: () => navigate("/coins"),
     },
     {
       label: "События",
-      icon: "pi pi-fw pi-sync",
       command: () => navigate("/arbitrage"),
     },
   ];

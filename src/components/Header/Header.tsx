@@ -5,7 +5,7 @@ import NavBar from "./components/Navbar/NavBar";
 
 import "./Header.scss";
 
- function Header() {
+function Header() {
   return (
     <div className="header">
       <InfoLine />
@@ -13,5 +13,5 @@ import "./Header.scss";
     </div>
   );
 }
-const MemoizedHeader = React.memo(Header)
+const MemoizedHeader = React.memo(Header);
 export default MemoizedHeader;

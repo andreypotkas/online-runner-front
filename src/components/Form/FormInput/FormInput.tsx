@@ -1,14 +1,14 @@
-import { RegistrationFormInitialValues } from "@/pages/Auth/types/registration.types";
+import { AuthFormInitialValues } from "@/pages/Auth/types/auth.types";
 import { FormikProps } from "formik";
 import { InputText } from "primereact/inputtext";
 import React from "react";
 import styles from "./FormInput.module.scss";
 
 export type BaseInputProps = {
-  field: keyof RegistrationFormInitialValues;
+  field: keyof AuthFormInitialValues;
   placeholder: string;
   label: string;
-  formik: FormikProps<RegistrationFormInitialValues>;
+  formik: FormikProps<AuthFormInitialValues>;
 };
 
 function FormInput({ field, placeholder, label, formik }: BaseInputProps) {

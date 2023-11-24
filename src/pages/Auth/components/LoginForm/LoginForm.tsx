@@ -3,65 +3,41 @@ import { Button } from "primereact/button";
 import styles from "../../Auth.module.scss";
 import MemoizedBaseInput from "@/components/Form/FormInput/FormInput";
 import { useFormik } from "formik";
-import { AuthFormInitialValues } from "@/pages/Auth/types/auth.types";
 import { FaGoogle } from "react-icons/fa";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-import { RegisterData, useAuthState } from "@/state/auth.state";
+import { LoginData, useAuthState } from "@/state/auth.state";
+import { AuthFormInitialValues } from "../../types/auth.types";
 
 const initialValues: AuthFormInitialValues = {
-  firstName: "",
-  lastName: "",
   email: "",
   password: "",
 };
 
-const SignupSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  lastName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
+const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string()
-    .min(8, "Too Short!")
+    .min(2, "Too Short!")
     .max(20, "Too Long!")
     .required("Required"),
 });
 
-function RegistrationForm() {
-  const { register } = useAuthState();
+function LoginForm() {
+  const { login } = useAuthState();
 
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
       console.log(values);
-      register(values as RegisterData);
+      login(values as LoginData);
     },
-    validationSchema: SignupSchema,
+    validationSchema: LoginSchema,
   });
 
   return (
     <div className={styles.form_wrapper}>
       <div className={styles.form_container}>
         <form onSubmit={formik.handleSubmit}>
-          <div className={styles.name_container}>
-            <MemoizedBaseInput
-              formik={formik}
-              placeholder="Имя"
-              field="firstName"
-              label="Имя"
-            />
-            <MemoizedBaseInput
-              formik={formik}
-              placeholder="Фамилия"
-              field="lastName"
-              label="Фамилия"
-            />
-          </div>
           <MemoizedBaseInput
             formik={formik}
             placeholder="Email адрес"
@@ -74,7 +50,7 @@ function RegistrationForm() {
             field="password"
             label="Пароль"
           />
-          <Button type="submit" label="Регистрация" className="w-full" />
+          <Button type="submit" label="Войти" className="w-full" />
         </form>
 
         <div className="m-3 text-center">
@@ -89,13 +65,14 @@ function RegistrationForm() {
 
         <div className="text-center mt-2">
           <span className="text-600 font-medium line-height-3">
-            Еще нет аккаунта?
+            Уже есть аккаунт?
           </span>
+
           <Link
-            to="/auth/login"
+            to="/auth/register"
             className="font-medium no-underline ml-2 text-blue-500 cursor-pointer"
           >
-            Войти!
+            Создать!
           </Link>
         </div>
       </div>
@@ -103,5 +80,5 @@ function RegistrationForm() {
   );
 }
 
-const MemoizedRegistrationForm = React.memo(RegistrationForm);
-export default MemoizedRegistrationForm;
+const MemoizedLoginForm = React.memo(LoginForm);
+export default MemoizedLoginForm;
