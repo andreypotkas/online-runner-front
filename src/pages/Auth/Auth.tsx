@@ -1,8 +1,9 @@
+import { useAuthState } from "@/state/auth.state";
 import styles from "./Auth.module.scss";
 import MemoizedImageBlock from "./components/ImageBlock/ImageBlock";
 import MemoizedLoginForm from "./components/LoginForm/LoginForm";
 import MemoizedRegistrationForm from "./components/RegistrationForm/RegistrationForm";
-import { useMemo } from "react";
+import MemoizedSuccessLoggedIn from "./components/SuccessLoggedin/SuccessLoggedIn";
 
 export enum AuthFormTypes {
   LOGIN = "login",
@@ -14,7 +15,16 @@ type Props = {
 };
 
 function Auth({ type }: Props) {
+  const { user } = useAuthState();
+  console.log(user);
+
   const displayedForm = () => {
+    if (user) {
+      console.log("YES");
+
+      return <MemoizedSuccessLoggedIn />;
+    }
+
     if (type === AuthFormTypes.LOGIN) {
       return <MemoizedLoginForm />;
     }

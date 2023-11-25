@@ -27,6 +27,7 @@ export type UseAuthState = {
   login: (data: LoginData) => void;
   register: (data: RegisterData) => void;
   setAuthData: (data: AuthResponse) => void;
+  logout: () => void;
 };
 
 export const useAuthState = create<UseAuthState, [["zustand/immer", never]]>(
@@ -37,11 +38,13 @@ export const useAuthState = create<UseAuthState, [["zustand/immer", never]]>(
     tokenExpires: null,
     loading: false,
     error: null,
-
     login: async (data: LoginData) => {
       try {
+        set({ loading: true, error: null });
+
         const authData = await AuthService.login(data);
         const { user, token, refreshToken, tokenExpires } = authData;
+
         set((state) => {
           state.user = user;
           state.token = token;
@@ -49,8 +52,9 @@ export const useAuthState = create<UseAuthState, [["zustand/immer", never]]>(
           state.tokenExpires = tokenExpires;
           state.loading = false;
           state.error = null;
+
+          LocalStorageService.setAuthData(authData);
         });
-        LocalStorageService.setAuthData(authData);
       } catch (e: unknown) {
         const error = e as AxiosError;
         set((state) => {
@@ -61,8 +65,11 @@ export const useAuthState = create<UseAuthState, [["zustand/immer", never]]>(
     },
     register: async (data: RegisterData) => {
       try {
+        set({ loading: true, error: null });
+
         const authData = await AuthService.register(data);
         const { user, token, refreshToken, tokenExpires } = authData;
+
         set((state) => {
           state.user = user;
           state.token = token;
@@ -70,8 +77,8 @@ export const useAuthState = create<UseAuthState, [["zustand/immer", never]]>(
           state.tokenExpires = tokenExpires;
           state.loading = false;
           state.error = null;
+          LocalStorageService.setAuthData(authData);
         });
-        LocalStorageService.setAuthData(authData);
       } catch (e: unknown) {
         const error = e as AxiosError;
         set((state) => {
@@ -91,6 +98,25 @@ export const useAuthState = create<UseAuthState, [["zustand/immer", never]]>(
           state.loading = false;
           state.error = null;
         });
+      } catch (e: unknown) {
+        const error = e as AxiosError;
+        set((state) => {
+          state.error = error.message;
+          state.loading = false;
+        });
+      }
+    },
+    logout: () => {
+      try {
+        set((state) => {
+          state.user = null;
+          state.refreshToken = null;
+          state.token = null;
+          state.tokenExpires = null;
+          state.loading = false;
+          state.error = null;
+        });
+        LocalStorageService.clearAuthData();
       } catch (e: unknown) {
         const error = e as AxiosError;
         set((state) => {

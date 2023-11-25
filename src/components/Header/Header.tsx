@@ -1,6 +1,6 @@
 import React from "react";
 
-import InfoLine from "./components/InfoLine/InfoLine";
+import AuthBar from "./components/AuthBar/AuthBar";
 import NavBar from "./components/Navbar/NavBar";
 
 import "./Header.scss";
@@ -8,7 +8,7 @@ import "./Header.scss";
 function Header() {
   return (
     <div className="header">
-      <InfoLine />
+      <AuthBar />
       <NavBar />
     </div>
   );

@@ -23,7 +23,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 function LoginForm() {
-  const { login } = useAuthState();
+  const { login, loading, error } = useAuthState();
 
   const formik = useFormik({
     initialValues,
@@ -50,7 +50,12 @@ function LoginForm() {
             field="password"
             label="Пароль"
           />
-          <Button type="submit" label="Войти" className="w-full" />
+          <Button
+            loading={!!loading}
+            type="submit"
+            label="Войти"
+            className="w-full"
+          />
         </form>
 
         <div className="m-3 text-center">

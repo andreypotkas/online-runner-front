@@ -3,7 +3,6 @@ import { LoginData, RegisterData } from "@/state/auth.state";
 import { AuthResponse } from "@/types/user.types";
 import axios from "axios";
 import { axiosInstance } from "./axios.interceptor";
-import { LocalStorageService } from "./localStorage.service";
 
 export class AuthService {
   static async login(data: LoginData): Promise<AuthResponse> {
