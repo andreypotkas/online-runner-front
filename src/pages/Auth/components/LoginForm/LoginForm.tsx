@@ -23,7 +23,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 function LoginForm() {
-  const { login, loading, error } = useAuthState();
+  const { login, loading } = useAuthState();
 
   const formik = useFormik({
     initialValues,
