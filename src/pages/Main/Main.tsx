@@ -9,49 +9,14 @@ import skiing from "@/assets/images/skiing.webp";
 import cycling from "@/assets/images/cycling.png";
 import swimming from "@/assets/images/swimming.jpeg";
 import running from "@/assets/images/running.jpeg";
+import ParallaxSection from "./components/ParallaxSection/ParallaxSection";
 
 export default function Main() {
   return (
     <div>
-      <div className="grid grid-nogutter surface-0 text-800 mb-2 py-8">
-        <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
-          <section>
-            <span className="block text-6xl font-bold mb-1">
-              Подними свою форму
-            </span>
-            <div className="text-6xl text-primary font-bold mb-3">
-              Почувствуй азарт онлайн-спорта
-            </div>
-            <p className="mt-0 mb-4 text-700 line-height-3">
-              Присоединяйся к нашему сообществу спортсменов и подними свою
-              тренировку на новый уровень. Бег, лыжи и другие захватывающие виды
-              спорта – мы предоставляем платформу, чтобы ты мог соревноваться,
-              совершенствоваться и общаться с единомышленниками.
-            </p>
+      <ParallaxSection />
 
-            <Button
-              label="Узнать больше"
-              type="button"
-              className="mr-3 p-button-raised"
-            />
-            <Button
-              label="Прямой эфир"
-              type="button"
-              className="p-button-outlined"
-            />
-          </section>
-        </div>
-        <div className="col-12 md:col-6 overflow-hidden">
-          <img
-            src={bg}
-            alt="hero-1"
-            className="md:ml-auto block md:h-full"
-            style={{ clipPath: "polygon(8% 0, 100% 0%, 100% 100%, 0 100%)" }}
-          />
-        </div>
-      </div>
-
-      <div className="surface-ground text-center py-8">
+      <div className="surface-ground text-center pb-8">
         <div className="mb-3 font-bold text-3xl">
           <span className="text-900">Преимущества </span>
           <span className="text-primary">Run Connect</span>

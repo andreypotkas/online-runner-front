@@ -1,14 +1,16 @@
 .header {
-  height: 8rem;
-  z-index: 997;
+  position: sticky;
+  z-index: 999;
+  padding: 0.85rem 0.5rem 0.5rem;
+  top: 0;
+  box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.05);
   width: 100%;
   background-color: var(--surface-card);
   transition: left 0.2s;
   display: flex;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.02), 0 0 2px rgba(0, 0, 0, 0.05),
-    0 1px 4px rgba(0, 0, 0, 0.08);
-  flex-direction: column;
   align-items: baseline;
+  justify-content: space-between;
+  transition: background-color 0.3s ease;
 }
 
 .p-menubar {

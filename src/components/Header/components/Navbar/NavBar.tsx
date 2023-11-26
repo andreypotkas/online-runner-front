@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { MenuItem } from "primereact/menuitem";
 import { TabMenu } from "primereact/tabmenu";
+import "./NavBar.scss";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -17,7 +18,11 @@ function NavBar() {
     },
   ];
 
-  return <TabMenu model={items} />;
+  return (
+    <div id="header-nav">
+      <TabMenu model={items} />
+    </div>
+  );
 }
 
 const MemoizedNavBar = React.memo(NavBar);

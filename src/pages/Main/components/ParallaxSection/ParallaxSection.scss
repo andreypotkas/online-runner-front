@@ -1,0 +1,10 @@
+.parallax-section {
+  background-image: url("@/assets/images/bg.jpeg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  height: 100vh; /* Adjust as needed */
+  width: 100%;
+  position: relative;
+  top: -6rem;
+}
