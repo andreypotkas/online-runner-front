@@ -6,10 +6,12 @@ import { OverlayPanel } from "primereact/overlaypanel";
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from "@/assets/images/avatar.png";
+import { useAuthState } from "@/state/auth.state";
 
 function UserIcon() {
   const navigate = useNavigate();
   const op = useRef<OverlayPanel | null>(null);
+  const { user } = useAuthState();
 
   const items: MenuItem[] = [
     {
@@ -30,19 +32,25 @@ function UserIcon() {
   ];
 
   return (
-    <div>
-      <Avatar
-        className="p-overlay-badge "
-        image={avatar}
-        size="large"
-        onClick={(e) => op.current!.toggle(e)}
-      >
-        <Badge value="4" severity="danger" />
-      </Avatar>
-      <OverlayPanel ref={op}>
-        <Menu model={items} />
-      </OverlayPanel>
-    </div>
+    <>
+      {user ? (
+        <div>
+          <Avatar
+            className="p-overlay-badge "
+            image={user.photo ?? avatar}
+            size="large"
+            onClick={(e) => op.current!.toggle(e)}
+          >
+            <Badge value="4" severity="danger" />
+          </Avatar>
+          <OverlayPanel ref={op}>
+            <Menu model={items} />
+          </OverlayPanel>
+        </div>
+      ) : (
+        <></>
+      )}
+    </>
   );
 }
 

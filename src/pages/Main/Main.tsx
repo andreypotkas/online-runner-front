@@ -1,10 +1,19 @@
 import { Button } from "primereact/button";
 import bg from "@/assets/images/BgRegistration.png";
+import { FaMedal, FaRunning } from "react-icons/fa";
+import { MdOutlineFreeCancellation } from "react-icons/md";
+import { GiHealing, GiPodiumWinner } from "react-icons/gi";
+import { IoTimeOutline } from "react-icons/io5";
+
+import skiing from "@/assets/images/skiing.webp";
+import cycling from "@/assets/images/cycling.png";
+import swimming from "@/assets/images/swimming.jpeg";
+import running from "@/assets/images/running.jpeg";
 
 export default function Main() {
   return (
     <div>
-      <div className="grid grid-nogutter surface-0 text-800 mb-2">
+      <div className="grid grid-nogutter surface-0 text-800 mb-2 py-8">
         <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
           <section>
             <span className="block text-6xl font-bold mb-1">
@@ -42,114 +51,307 @@ export default function Main() {
         </div>
       </div>
 
-      <div className="surface-0 text-center my-2 py-6">
+      <div className="surface-ground text-center py-8">
         <div className="mb-3 font-bold text-3xl">
-          <span className="text-900">Один Продукт, </span>
-          <span className="text-blue-600">Много Возможностей</span>
+          <span className="text-900">Преимущества </span>
+          <span className="text-primary">Run Connect</span>
         </div>
         <div className="text-700 mb-6">
-          Участвуй в онлайн тренировках и соревнованиях, используя наш продукт,
-          который создан для твоего комфорта и эффективности.
+          Познакомьтесь с удивительными возможностями нашего приложения Run
+          Connect, созданного для максимального комфорта и эффективности в ваших
+          тренировках.
         </div>
         <div className="grid">
           <div className="col-12 md:col-4 mb-4 px-5">
             <span
-              className="p-3 shadow-2 mb-3 inline-block"
+              className="p-3 shadow-2 mb-3 inline-block text-primary"
               style={{ borderRadius: "10px" }}
             >
-              <i className="pi pi-desktop text-4xl text-blue-500"></i>
+              <FaRunning size="36" />
             </span>
             <div className="text-900 text-xl mb-3 font-medium">
-              Разработано для Разработчиков
+              Активный образ жизни
             </div>
             <span className="text-700 line-height-3">
-              Создано для того, чтобы обеспечить удобство и эффективность онлайн
-              тренировок и соревнований. Duis aute irure dolor in reprehenderit
-              in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Мы создали Виртуальные Забеги, чтобы помочь людям, которые хотят
+              вести активный образ жизни, сохранять интерес к занятиям спортом и
+              продолжать тренироваться, несмотря на недостаток свободного
+              времени.
             </span>
           </div>
           <div className="col-12 md:col-4 mb-4 px-5">
             <span
-              className="p-3 shadow-2 mb-3 inline-block"
+              className="p-3 shadow-2 mb-3 inline-block  text-primary"
               style={{ borderRadius: "10px" }}
             >
-              <i className="pi pi-lock text-4xl text-blue-500"></i>
+              <GiPodiumWinner size="32" />
             </span>
             <div className="text-900 text-xl mb-3 font-medium">
-              Полная Шифровка
+              Удобство в любом месте{" "}
             </div>
             <span className="text-700 line-height-3">
-              Защищай свои данные и результаты тренировок с помощью полной
-              шифровки. Risus nec feugiat in fermentum posuere urna nec. Posuere
-              sollicitudin aliquam ultrices sagittis.
+              Выбери дистанцию, пробеги её или пройди по улице, либо в закрытом
+              помещении (например на беговой дорожке), в любое удобное для тебя
+              время и получи уникальную медаль! Бери с собой членов семьи или
+              друзей и финишируйте вместе!
             </span>
           </div>
           <div className="col-12 md:col-4 mb-4 px-5">
             <span
-              className="p-3 shadow-2 mb-3 inline-block"
+              className="p-3 shadow-2 mb-3 inline-block text-primary"
               style={{ borderRadius: "10px" }}
             >
-              <i className="pi pi-check-circle text-4xl text-blue-500"></i>
+              <MdOutlineFreeCancellation size="36" />
             </span>
             <div className="text-900 text-xl mb-3 font-medium">
-              Прост в Использовании
+              Соревнуйся с комфортом
             </div>
             <span className="text-700 line-height-3">
-              Наслаждайся легкостью использования нашего продукта. Ornare
-              suspendisse sed nisi lacus sed viverra tellus. Neque volutpat ac
-              tincidunt vitae semper.
+              Больше не нужно тратить время на получение стартового пакета,
+              ждать в очереди или нервничать в день забега. Не нужно толпиться
+              на старте и на финише, или испытывать дискомфорт, когда тебя
+              обгоняют более быстрые участники.
             </span>
           </div>
           <div className="col-12 md:col-4 mb-4 px-5">
             <span
-              className="p-3 shadow-2 mb-3 inline-block"
+              className="p-3 shadow-2 mb-3 inline-block text-primary"
               style={{ borderRadius: "10px" }}
             >
-              <i className="pi pi-globe text-4xl text-blue-500"></i>
+              <GiHealing size="36" />
             </span>
             <div className="text-900 text-xl mb-3 font-medium">
-              Быстрая и Глобальная Поддержка
+              Получай удовольствие
             </div>
             <span className="text-700 line-height-3">
-              Получай поддержку в любом уголке мира. Fermentum et sollicitudin
-              ac orci phasellus egestas tellus rutrum tellus.
+              Ведь суть забегов не всегда во времени. Идея в том, чтобы
+              оставаться здоровым и активным, испытывать удовольствие от занятий
+              и с каждым днём становиться лучшей версией себя!
             </span>
           </div>
           <div className="col-12 md:col-4 mb-4 px-5">
             <span
-              className="p-3 shadow-2 mb-3 inline-block"
+              className="p-3 shadow-2 mb-3 inline-block text-primary"
               style={{ borderRadius: "10px" }}
             >
-              <i className="pi pi-github text-4xl text-blue-500"></i>
+              <IoTimeOutline size="32" />
             </span>
             <div className="text-900 text-xl mb-3 font-medium">
-              Открытый Исходный Код
+              Когда угодно
             </div>
             <span className="text-700 line-height-3">
-              Исследуй и адаптируй наш продукт благодаря открытому исходному
-              коду. Nec tincidunt praesent semper feugiat. Sed adipiscing diam
-              donec adipiscing tristique risus nec feugiat.
+              Virtual Run Ru предлагает стартовый номер и медаль, точно также
+              как это бывает на традиционных забегах, но вы можете участвовать в
+              своём собственном графике и со своим темпом.
             </span>
           </div>
           <div className="col-12 md:col-4 md:mb-4 mb-0 px-3">
             <span
-              className="p-3 shadow-2 mb-3 inline-block"
+              className="p-3 shadow-2 mb-3 inline-block text-primary"
               style={{ borderRadius: "10px" }}
             >
-              <i className="pi pi-shield text-4xl text-blue-500"></i>
+              <FaMedal size="36" />
             </span>
             <div className="text-900 text-xl mb-3 font-medium">
-              Доверенная Безопасность
+              Зарабатывай награды
             </div>
             <span className="text-700 line-height-3">
-              Доверяй безопасности нашего продукта. Mattis rhoncus urna neque
-              viverra justo nec ultrices. Id cursus metus aliquam eleifend.
+              Можно финишировать Виртуальный забег в любом месте и за любое
+              время в течение указанных дней пока открыто событие. Просто
+              пробегите или пройдите свои 5/10/21,1км или более и получите
+              уникальную медаль!
             </span>
           </div>
         </div>
       </div>
 
-      <div className="surface-0 text-700 text-center my-2 py-6">
+      <div className="surface-0 py-8">
+        <div className="mb-3 font-bold text-3xl text-center">
+          <span className="text-900">Виды спорта </span>
+          <span className="text-primary">Run Connect</span>
+        </div>
+        <div className="text-700 text-xl mb-6 text-center line-height-3">
+          Выбирай спорт на любой вкус, соревнуйся, получай удовольствие и
+          зарабатывай награды!
+        </div>
+
+        <div className="grid">
+          <div className="col-12 lg:col-3">
+            <div className="p-3 h-full">
+              <div
+                className="shadow-2 p-3 h-full flex flex-column"
+                style={{ borderRadius: "6px" }}
+              >
+                <div className="text-900 font-medium text-xl mb-2">Running</div>
+                <img
+                  src={running}
+                  alt="Running"
+                  className="mb-3"
+                  style={{
+                    borderRadius: "6px",
+                    maxHeight: "150px",
+                    objectFit: "cover",
+                  }}
+                />
+                <div className="text-600">
+                  Enjoy your runs with our tailored plans for runners of all
+                  levels.
+                </div>
+                <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
+
+                <ul className="list-none p-0 m-0 flex-grow-1">
+                  <li className="flex align-items-center mb-3">
+                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>5K, 10K, 21K distances</span>
+                  </li>
+                  <li className="flex align-items-center mb-3">
+                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Outdoor and Indoor</span>
+                  </li>
+                </ul>
+                <hr className="mb-3 mx-0 border-top-1 border-bottom-none border-300 mt-auto" />
+                <Button
+                  label="Смотреть события"
+                  className="p-3 w-full mt-auto"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="col-12 lg:col-3">
+            {/* Skiing */}
+            <div className="p-3 h-full">
+              <div
+                className="shadow-2 p-3 h-full flex flex-column"
+                style={{ borderRadius: "6px" }}
+              >
+                <div className="text-900 font-medium text-xl mb-2">Skiing</div>
+                <img
+                  src={skiing}
+                  alt="Skiing"
+                  className="mb-3"
+                  style={{
+                    borderRadius: "6px",
+                    maxHeight: "150px",
+                    objectFit: "cover",
+                  }}
+                />
+                <div className="text-600">
+                  Hit the slopes with our skiing plans designed for all skiing
+                  enthusiasts.
+                </div>
+
+                <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
+                <ul className="list-none p-0 m-0 flex-grow-1">
+                  <li className="flex align-items-center mb-3">
+                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Alpine and Cross-Country</span>
+                  </li>
+                  <li className="flex align-items-center mb-3">
+                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Mountain adventures</span>
+                  </li>
+                </ul>
+                <hr className="mb-3 mx-0 border-top-1 border-bottom-none border-300 mt-auto" />
+                <Button
+                  label="Смотреть события"
+                  className="p-3 w-full mt-auto"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="col-12 lg:col-3">
+            {/* Swimming */}
+            <div className="p-3 h-full">
+              <div
+                className="shadow-2 p-3 h-full flex flex-column"
+                style={{ borderRadius: "6px" }}
+              >
+                <div className="text-900 font-medium text-xl mb-2">
+                  Swimming
+                </div>
+                <img
+                  src={swimming}
+                  alt="Swimming"
+                  className="mb-3"
+                  style={{
+                    borderRadius: "6px",
+                    maxHeight: "150px",
+                    objectFit: "cover",
+                  }}
+                />
+                <div className="text-600">
+                  Dive into our swimming plans crafted for water lovers of all
+                  levels.
+                </div>
+                <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
+
+                <ul className="list-none p-0 m-0 flex-grow-1">
+                  <li className="flex align-items-center mb-3">
+                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Pool and Open water</span>
+                  </li>
+                  <li className="flex align-items-center mb-3">
+                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Stroke improvement</span>
+                  </li>
+                </ul>
+                <hr className="mb-3 mx-0 border-top-1 border-bottom-none border-300 mt-auto" />
+                <Button
+                  label="Смотреть события"
+                  className="p-3 w-full mt-auto"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="col-12 lg:col-3">
+            {/* Cycling */}
+            <div className="p-3 h-full">
+              <div
+                className="shadow-2 p-3 h-full flex flex-column"
+                style={{ borderRadius: "6px" }}
+              >
+                <div className="text-900 font-medium text-xl mb-2">Cycling</div>
+                <img
+                  src={cycling}
+                  alt="Cycling"
+                  className="mb-3"
+                  style={{
+                    borderRadius: "6px",
+                    maxHeight: "150px",
+                    objectFit: "cover",
+                  }}
+                />
+                <div className="text-600">
+                  Ride the roads with our cycling plans tailored for cyclists of
+                  all levels.
+                </div>
+                <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
+
+                <ul className="list-none p-0 m-0 flex-grow-1">
+                  <li className="flex align-items-center mb-3">
+                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Road and Mountain biking</span>
+                  </li>
+                  <li className="flex align-items-center mb-3">
+                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Group rides and Solo adventures</span>
+                  </li>
+                </ul>
+                <hr className="mb-3 mx-0 border-top-1 border-bottom-none border-300 mt-auto" />
+                <Button
+                  label="Смотреть события"
+                  className="p-3 w-full mt-auto"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="surface-ground text-700 text-center my-2 py-6">
         <div className="text-blue-600 font-bold mb-3">
           <i className="pi pi-discord"></i>&nbsp;POWERED BY DISCORD
         </div>
@@ -161,145 +363,10 @@ export default function Main() {
           numquam eligendi quos.
         </div>
         <Button
-          label="Join Now"
+          label="Смотреть события"
           icon="pi pi-discord"
           className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
         />
-      </div>
-
-      <div className="surface-0 my-2 py-6">
-        <div className="text-900 font-bold text-6xl mb-4 text-center">
-          Pricing Plans
-        </div>
-        <div className="text-700 text-xl mb-6 text-center line-height-3">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit
-          numquam eligendi quos.
-        </div>
-
-        <div className="grid">
-          <div className="col-12 lg:col-4">
-            <div className="p-3 h-full">
-              <div
-                className="shadow-2 p-3 h-full flex flex-column"
-                style={{ borderRadius: "6px" }}
-              >
-                <div className="text-900 font-medium text-xl mb-2">Basic</div>
-                <div className="text-600">Plan description</div>
-                <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
-                <div className="flex align-items-center">
-                  <span className="font-bold text-2xl text-900">$9</span>
-                  <span className="ml-2 font-medium text-600">per month</span>
-                </div>
-                <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
-                <ul className="list-none p-0 m-0 flex-grow-1">
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Arcu vitae elementum</span>
-                  </li>
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Dui faucibus in ornare</span>
-                  </li>
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Morbi tincidunt augue</span>
-                  </li>
-                </ul>
-                <hr className="mb-3 mx-0 border-top-1 border-bottom-none border-300 mt-auto" />
-                <Button label="Buy Now" className="p-3 w-full mt-auto" />
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12 lg:col-4">
-            <div className="p-3 h-full">
-              <div
-                className="shadow-2 p-3 h-full flex flex-column"
-                style={{ borderRadius: "6px" }}
-              >
-                <div className="text-900 font-medium text-xl mb-2">Premium</div>
-                <div className="text-600">Plan description</div>
-                <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
-                <div className="flex align-items-center">
-                  <span className="font-bold text-2xl text-900">$29</span>
-                  <span className="ml-2 font-medium text-600">per month</span>
-                </div>
-                <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
-                <ul className="list-none p-0 m-0 flex-grow-1">
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Arcu vitae elementum</span>
-                  </li>
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Dui faucibus in ornare</span>
-                  </li>
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Morbi tincidunt augue</span>
-                  </li>
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Duis ultricies lacus sed</span>
-                  </li>
-                </ul>
-                <hr className="mb-3 mx-0 border-top-1 border-bottom-none border-300" />
-                <Button label="Buy Now" className="p-3 w-full" />
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12 lg:col-4">
-            <div className="p-3 h-full">
-              <div
-                className="shadow-2 p-3 flex flex-column"
-                style={{ borderRadius: "6px" }}
-              >
-                <div className="text-900 font-medium text-xl mb-2">
-                  Enterprise
-                </div>
-                <div className="text-600">Plan description</div>
-                <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
-                <div className="flex align-items-center">
-                  <span className="font-bold text-2xl text-900">$49</span>
-                  <span className="ml-2 font-medium text-600">per month</span>
-                </div>
-                <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
-                <ul className="list-none p-0 m-0 flex-grow-1">
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Arcu vitae elementum</span>
-                  </li>
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Dui faucibus in ornare</span>
-                  </li>
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Morbi tincidunt augue</span>
-                  </li>
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Duis ultricies lacus sed</span>
-                  </li>
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Imperdiet proin</span>
-                  </li>
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>Nisi scelerisque</span>
-                  </li>
-                </ul>
-                <hr className="mb-3 mx-0 border-top-1 border-bottom-none border-300" />
-                <Button
-                  label="Buy Now"
-                  className="p-3 w-full p-button-outlined"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
