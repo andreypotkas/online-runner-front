@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function EventCard() {
   return (
     <div className="col-12 xl:col-6">
