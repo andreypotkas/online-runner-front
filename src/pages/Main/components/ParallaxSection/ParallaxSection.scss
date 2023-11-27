@@ -1,5 +1,5 @@
 .parallax-section {
-  background-image: url("@/assets/images/bg.jpeg");
+  background-image: url("@/assets/images/MainPage/parallax-image.jpeg");
   background-attachment: fixed;
   background-size: cover;
   height: 100vh;
@@ -9,6 +9,9 @@
 
   @media (max-width: 768px) {
     background-attachment: scroll;
+    position: inherit;
     top: 0;
+    background-image: url("@/assets/images/MainPage/parallax-image-mobile.jpeg");
+    background-repeat: no-repeat;
   }
 }
