@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { FaRunning } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { Menubar } from "primereact/menubar";
 import { MenuItem } from "primereact/menuitem";
@@ -11,21 +11,29 @@ import "./Header.scss";
 
 function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const items: MenuItem[] = [
     {
       label: "Главная",
-      command: () => navigate("/coins"),
+      command: () => navigate("/"),
     },
     {
       label: "События",
-      command: () => navigate("/arbitrage"),
+      command: () => navigate("/events"),
     },
   ];
   useEffect(() => {
+    const header = document.getElementById("yourHeaderId");
+    console.log(location);
+
+    if (location.pathname !== "/") {
+      header!.style.backgroundColor = "var(--surface-card)";
+      return;
+    }
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const header = document.getElementById("yourHeaderId");
 
       if (scrollPosition > 50) {
         header!.style.backgroundColor = "var(--surface-card)";
@@ -37,7 +45,7 @@ function Header() {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [location]);
 
   return (
     <header className="header-wrapper" id="yourHeaderId">

@@ -11,6 +11,7 @@ import MemoizedHeader from "./components/Header/Header";
 import { ThemeContext } from "./context/themeContext";
 import Auth from "./pages/Auth/Auth";
 import { AuthFormTypes } from "./pages/Auth/types/auth.types";
+import MemoizedEvents from "./pages/Events/Events";
 import Main from "./pages/Main/Main";
 import { useAuthState } from "./state/auth.state";
 import { ThemeModes } from "./types/common.types";
@@ -50,7 +51,7 @@ function App() {
                 path="/auth/register"
                 element={<Auth type={AuthFormTypes.REGISTER} />}
               />
-
+              <Route path="/events" element={<MemoizedEvents />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </Suspense>
