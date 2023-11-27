@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
-
-import { Button } from "primereact/button";
+import DayNightToggle from "react-day-and-night-toggle";
 
 import { ThemeContext } from "@/context/themeContext";
 import { ThemeModes } from "@/types/common.types";
@@ -29,14 +28,13 @@ function ThemeSwitcher() {
   }, [theme]);
 
   return (
-    <Button
-      raised
-      rounded
-      text
-      outlined={theme === "light"}
-      icon={theme === "light" ? "pi pi-sun" : "pi pi-moon"}
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-    ></Button>
+    <>
+      <DayNightToggle
+        size={32}
+        onChange={() => setTheme(theme === "light" ? "dark" : "light")}
+        checked={theme === "dark"}
+      />
+    </>
   );
 }
 

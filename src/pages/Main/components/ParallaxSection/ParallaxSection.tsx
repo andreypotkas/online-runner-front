@@ -1,11 +1,16 @@
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Button } from "primereact/button";
 
 import "./ParallaxSection.scss";
 
 const ParallaxSection = () => {
+  const navigate = useNavigate();
   const parallaxRef = useRef(null);
+
+  const handleClickRegister = () => navigate("/auth/register");
+  const handleClickEvents = () => navigate("/events");
 
   useEffect(() => {
     const parallax = parallaxRef.current;
@@ -26,7 +31,7 @@ const ParallaxSection = () => {
 
   return (
     <div
-      className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center parallax-section"
+      className="col-12 md:col-6 p-6 text-center text-left flex align-items-center parallax-section"
       ref={parallaxRef}
     >
       <section className="px-2">
@@ -47,14 +52,16 @@ const ParallaxSection = () => {
         </p>
 
         <Button
-          label="Узнать больше"
+          label="Регистрация"
           type="button"
           className="mr-3 p-button-raised"
+          onClick={handleClickRegister}
         />
         <Button
-          label="Прямой эфир"
+          label="Посмотреть события"
           type="button"
           className="p-button-outlined"
+          onClick={handleClickEvents}
         />
       </section>
     </div>

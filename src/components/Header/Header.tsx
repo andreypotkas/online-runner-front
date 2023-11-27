@@ -1,14 +1,27 @@
 import React, { useEffect } from "react";
 import { FaRunning } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-import MemoizedAuthBtn from "./components/AuthBtn/AuthBtn";
-import MemoizedNavBar from "./components/Navbar/NavBar";
-import MemoizedThemeSwitcher from "./components/ThemeSwitcher/ThemeSwitcher";
+import { Menubar } from "primereact/menubar";
+import { MenuItem } from "primereact/menuitem";
+
 import MemoizedUserIcon from "./components/UserIcon/UserIcon";
 
 import "./Header.scss";
 
 function Header() {
+  const navigate = useNavigate();
+
+  const items: MenuItem[] = [
+    {
+      label: "Главная",
+      command: () => navigate("/coins"),
+    },
+    {
+      label: "События",
+      command: () => navigate("/arbitrage"),
+    },
+  ];
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -16,10 +29,8 @@ function Header() {
 
       if (scrollPosition > 50) {
         header!.style.backgroundColor = "var(--surface-card)";
-        header!.style.height = "6rem";
       } else {
         header!.style.backgroundColor = "transparent";
-        header!.style.height = "7rem";
       }
     };
 
@@ -29,18 +40,21 @@ function Header() {
   }, []);
 
   return (
-    <div className="header" id="yourHeaderId">
-      <div className="flex gap-2 text-3xl text-primary align-items-center">
-        <FaRunning />
-        <span> Run connect</span>
-        <MemoizedNavBar />
-      </div>
-      <div className="flex gap-2 flex-shrink-0 p-1">
-        <MemoizedUserIcon />
-        <MemoizedThemeSwitcher />
-        <MemoizedAuthBtn />
-      </div>
-    </div>
+    <header className="header-wrapper">
+      <Menubar
+        id="yourHeaderId"
+        model={items}
+        start={
+          <>
+            <div className="flex gap-2 text-3xl text-primary align-items-center">
+              <FaRunning />
+              <span> Run connect</span>
+            </div>
+          </>
+        }
+        end={<MemoizedUserIcon />}
+      />
+    </header>
   );
 }
 const MemoizedHeader = React.memo(Header);

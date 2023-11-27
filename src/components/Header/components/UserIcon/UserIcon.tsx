@@ -10,17 +10,15 @@ import { OverlayPanel } from "primereact/overlaypanel";
 import avatar from "@/assets/images/avatar.png";
 import { useAuthState } from "@/state/auth.state";
 
+import MemoizedAuthBtn from "../AuthBtn/AuthBtn";
+import MemoizedThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
+
 function UserIcon() {
   const navigate = useNavigate();
   const op = useRef<OverlayPanel | null>(null);
-  const { user } = useAuthState();
+  const { user, logout } = useAuthState();
 
   const items: MenuItem[] = [
-    {
-      label: "Настройки",
-      icon: "pi pi-cog",
-      command: () => navigate("/settings"),
-    },
     {
       label: "Уведомления",
       icon: "pi pi-bell",
@@ -30,6 +28,11 @@ function UserIcon() {
       label: "Личный кабинет",
       icon: "pi pi-user",
       command: () => navigate("/settings"),
+    },
+    {
+      label: "Выйти",
+      icon: "pi pi-sign-out",
+      command: () => logout(),
     },
   ];
 
@@ -41,16 +44,25 @@ function UserIcon() {
             className="p-overlay-badge "
             image={user.photo ?? avatar}
             size="large"
-            onClick={(e) => op.current!.toggle(e)}
+            onClick={(e) => {
+              op.current!.toggle(e);
+            }}
           >
             <Badge value="4" severity="danger" />
           </Avatar>
           <OverlayPanel ref={op}>
+            <div className="flex gap-4 align-items-center p-2">
+              <div>Тема</div>
+              <MemoizedThemeSwitcher />
+            </div>
             <Menu model={items} />
           </OverlayPanel>
         </div>
       ) : (
-        <></>
+        <div className="flex gap-2 align-items-center">
+          <MemoizedThemeSwitcher />
+          <MemoizedAuthBtn />
+        </div>
       )}
     </>
   );

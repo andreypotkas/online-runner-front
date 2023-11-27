@@ -1,3 +1,4 @@
+import React from "react";
 import { FaMedal, FaRunning } from "react-icons/fa";
 import { GiHealing, GiPodiumWinner } from "react-icons/gi";
 import { IoTimeOutline } from "react-icons/io5";
@@ -13,7 +14,7 @@ import { AnimatedSection } from "@/components/shared/Animated/Animated";
 
 import ParallaxSection from "./components/ParallaxSection/ParallaxSection";
 
-export default function Main() {
+function Main() {
   return (
     <div>
       <ParallaxSection />
@@ -327,24 +328,9 @@ export default function Main() {
           </div>
         </div>
       </AnimatedSection>
-
-      <div className="surface-ground text-700 text-center my-2 py-6">
-        <div className="text-blue-600 font-bold mb-3">
-          <i className="pi pi-discord"></i>&nbsp;POWERED BY DISCORD
-        </div>
-        <div className="text-900 font-bold text-5xl mb-3">
-          Join Our Design Community
-        </div>
-        <div className="text-700 text-2xl mb-5">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit
-          numquam eligendi quos.
-        </div>
-        <Button
-          label="Смотреть события"
-          icon="pi pi-discord"
-          className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
-        />
-      </div>
     </div>
   );
 }
+
+const MemoizedMain = React.memo(Main);
+export default MemoizedMain;
