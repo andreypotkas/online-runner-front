@@ -7,4 +7,9 @@
   width: 100% !important;
   position: relative;
   top: -7rem;
+
+  @media (max-width: 768px) {
+    background-attachment: scroll;
+    top: 0;
+  }
 }
