@@ -40,15 +40,14 @@ function Header() {
   }, []);
 
   return (
-    <header className="header-wrapper">
+    <header className="header-wrapper" id="yourHeaderId">
       <Menubar
-        id="yourHeaderId"
         model={items}
         start={
           <>
-            <div className="flex gap-2 text-3xl text-primary align-items-center">
+            <div className="flex gap-2 text-3xl text-primary align-items-center ">
               <FaRunning />
-              <span> Run connect</span>
+              <span className="flex-shrink-0"> Run connect</span>
             </div>
           </>
         }

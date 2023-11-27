@@ -30,7 +30,7 @@ function ThemeSwitcher() {
   return (
     <>
       <DayNightToggle
-        size={32}
+        size={26}
         onChange={() => setTheme(theme === "light" ? "dark" : "light")}
         checked={theme === "dark"}
       />
