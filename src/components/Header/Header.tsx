@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
+import { FaRunning } from "react-icons/fa";
+
+import MemoizedAuthBtn from "./components/AuthBtn/AuthBtn";
+import MemoizedNavBar from "./components/Navbar/NavBar";
+import MemoizedThemeSwitcher from "./components/ThemeSwitcher/ThemeSwitcher";
+import MemoizedUserIcon from "./components/UserIcon/UserIcon";
 
 import "./Header.scss";
-import { FaRunning } from "react-icons/fa";
-import MemoizedNavBar from "./components/Navbar/NavBar";
-import MemoizedUserIcon from "./components/UserIcon/UserIcon";
-import MemoizedThemeSwitcher from "./components/ThemeSwitcher/ThemeSwitcher";
-import MemoizedAuthBtn from "./components/AuthBtn/AuthBtn";
 
 function Header() {
   useEffect(() => {
@@ -14,9 +15,11 @@ function Header() {
       const header = document.getElementById("yourHeaderId");
 
       if (scrollPosition > 50) {
-        header!.style.backgroundColor = "#ffffff";
+        header!.style.backgroundColor = "var(--surface-card)";
+        header!.style.height = "6rem";
       } else {
         header!.style.backgroundColor = "transparent";
+        header!.style.height = "7rem";
       }
     };
 

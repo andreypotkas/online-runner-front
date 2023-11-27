@@ -1,6 +1,8 @@
 import React from "react";
-import styles from "./ImageBlock.module.scss";
+
 import bg from "@/assets/images/BgRegistration.png";
+
+import styles from "./ImageBlock.module.scss";
 
 function ImageBlock() {
   return (

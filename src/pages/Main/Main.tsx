@@ -1,14 +1,15 @@
-import { Button } from "primereact/button";
-import bg from "@/assets/images/BgRegistration.png";
 import { FaMedal, FaRunning } from "react-icons/fa";
-import { MdOutlineFreeCancellation } from "react-icons/md";
 import { GiHealing, GiPodiumWinner } from "react-icons/gi";
 import { IoTimeOutline } from "react-icons/io5";
+import { MdOutlineFreeCancellation } from "react-icons/md";
 
-import skiing from "@/assets/images/skiing.webp";
+import { Button } from "primereact/button";
+
 import cycling from "@/assets/images/cycling.png";
-import swimming from "@/assets/images/swimming.jpeg";
 import running from "@/assets/images/running.jpeg";
+import skiing from "@/assets/images/skiing.webp";
+import swimming from "@/assets/images/swimming.jpeg";
+
 import ParallaxSection from "./components/ParallaxSection/ParallaxSection";
 
 export default function Main() {

@@ -1,7 +1,9 @@
 import React, { useContext, useEffect } from "react";
+
+import { Button } from "primereact/button";
+
 import { ThemeContext } from "@/context/themeContext";
 import { ThemeModes } from "@/types/common.types";
-import { Button } from "primereact/button";
 
 function ThemeSwitcher() {
   const { theme, setTheme } = useContext(ThemeContext)!;

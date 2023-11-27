@@ -1,5 +1,7 @@
-import { Button } from "primereact/button";
 import { useEffect, useRef } from "react";
+
+import { Button } from "primereact/button";
+
 import "./ParallaxSection.scss";
 
 const ParallaxSection = () => {

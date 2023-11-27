@@ -1,10 +1,12 @@
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Avatar } from "primereact/avatar";
 import { Badge } from "primereact/badge";
 import { Menu } from "primereact/menu";
 import { MenuItem } from "primereact/menuitem";
 import { OverlayPanel } from "primereact/overlaypanel";
-import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+
 import avatar from "@/assets/images/avatar.png";
 import { useAuthState } from "@/state/auth.state";
 

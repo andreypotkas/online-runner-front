@@ -4,3 +4,8 @@ export type AuthFormInitialValues = {
   email: string;
   password: string;
 };
+
+export enum AuthFormTypes {
+  LOGIN = "login",
+  REGISTER = "register",
+}

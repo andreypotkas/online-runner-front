@@ -1,23 +1,25 @@
+import { Suspense, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Navigate,
   Route,
   Routes,
 } from "react-router-dom";
-import "./styles/index.scss";
 
+import { LocalStorageService } from "./api/localStorage.service";
+import MemoizedHeader from "./components/Header/Header";
+import { ThemeContext } from "./context/themeContext";
+import Auth from "./pages/Auth/Auth";
+import { AuthFormTypes } from "./pages/Auth/types/auth.types";
+import Main from "./pages/Main/Main";
+import { useAuthState } from "./state/auth.state";
+import { ThemeModes } from "./types/common.types";
+
+import "./styles/index.scss";
 import "primereact/resources/primereact.min.css";
 import "/node_modules/primeflex/primeflex.css";
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-teal/theme.css";
-import { ThemeContext } from "./context/themeContext";
-import MemoizedHeader from "./components/Header/Header";
-import { Suspense, useEffect, useState } from "react";
-import { ThemeModes } from "./types/common.types";
-import Main from "./pages/Main/Main";
-import Auth, { AuthFormTypes } from "./pages/Auth/Auth";
-import { LocalStorageService } from "./api/localStorage.service";
-import { useAuthState } from "./state/auth.state";
 
 function App() {
   const [theme, setTheme] = useState<ThemeModes>("light");
@@ -30,7 +32,7 @@ function App() {
 
       setAuthData(authData);
     }
-  }, []);
+  }, [setAuthData]);
 
   return (
     <Router>

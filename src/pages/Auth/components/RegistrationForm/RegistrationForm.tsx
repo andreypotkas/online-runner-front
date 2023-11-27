@@ -1,13 +1,16 @@
 import React from "react";
-import { Button } from "primereact/button";
-import styles from "../../Auth.module.scss";
-import MemoizedBaseInput from "@/components/Form/FormInput/FormInput";
-import { useFormik } from "formik";
-import { AuthFormInitialValues } from "@/pages/Auth/types/auth.types";
 import { FaGoogle } from "react-icons/fa";
-import * as Yup from "yup";
 import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
+import { Button } from "primereact/button";
+
+import MemoizedBaseInput from "@/components/Form/FormInput/FormInput";
+import { AuthFormInitialValues } from "@/pages/Auth/types/auth.types";
 import { RegisterData, useAuthState } from "@/state/auth.state";
+
+import styles from "../../Auth.module.scss";
 
 const initialValues: AuthFormInitialValues = {
   firstName: "",

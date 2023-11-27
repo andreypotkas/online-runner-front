@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { API_BASE_URL } from "@/constants/common.constants";
+
 import { LocalStorageService } from "./localStorage.service";
 
 export const axiosInstance = axios.create({
@@ -25,7 +26,7 @@ export const setupInterceptors = () => {
   );
 
   let isRefreshing = false;
-  let refreshPromise: Promise<any> | null = null;
+  let refreshPromise: Promise<unknown> | null = null;
 
   axiosInstance.interceptors.response.use(
     (res) => {

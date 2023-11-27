@@ -1,7 +1,10 @@
-import { AuthFormInitialValues } from "@/pages/Auth/types/auth.types";
-import { FormikProps } from "formik";
-import { InputText } from "primereact/inputtext";
 import React from "react";
+import { FormikProps } from "formik";
+
+import { InputText } from "primereact/inputtext";
+
+import { AuthFormInitialValues } from "@/pages/Auth/types/auth.types";
+
 import styles from "./FormInput.module.scss";
 
 export type BaseInputProps = {

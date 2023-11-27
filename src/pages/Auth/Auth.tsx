@@ -1,14 +1,12 @@
 import { useAuthState } from "@/state/auth.state";
-import styles from "./Auth.module.scss";
+
 import MemoizedImageBlock from "./components/ImageBlock/ImageBlock";
 import MemoizedLoginForm from "./components/LoginForm/LoginForm";
 import MemoizedRegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import MemoizedSuccessLoggedIn from "./components/SuccessLoggedin/SuccessLoggedIn";
+import { AuthFormTypes } from "./types/auth.types";
 
-export enum AuthFormTypes {
-  LOGIN = "login",
-  REGISTER = "register",
-}
+import styles from "./Auth.module.scss";
 
 type Props = {
   type: AuthFormTypes;

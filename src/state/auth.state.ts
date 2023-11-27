@@ -1,9 +1,10 @@
-import { AuthService } from "@/api/auth.service";
-import { LocalStorageService } from "@/api/localStorage.service";
-import { AuthResponse, UserResponse } from "@/types/user.types";
 import { AxiosError } from "axios";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+
+import { AuthService } from "@/api/auth.service";
+import { LocalStorageService } from "@/api/localStorage.service";
+import { AuthResponse, UserResponse } from "@/types/user.types";
 
 export type LoginData = {
   email: string;

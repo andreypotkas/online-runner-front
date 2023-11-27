@@ -1,6 +1,7 @@
+import React from "react";
+
 import "./SuccessLoggedIn.scss";
 import styles from "../../Auth.module.scss";
-import React from "react";
 
 function SuccessLoggedIn() {
   return (

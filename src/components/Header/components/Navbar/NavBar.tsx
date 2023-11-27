@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { MenuItem } from "primereact/menuitem";
 import { TabMenu } from "primereact/tabmenu";
+
 import "./NavBar.scss";
 
 function NavBar() {
