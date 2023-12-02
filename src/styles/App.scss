@@ -12,8 +12,13 @@ body {
   flex-direction: column;
   min-height: 100vh;
   gap: 0.2rem;
-  padding: 2rem 2rem 3rem 2rem;
+  padding: 1rem 1rem 3rem 1rem;
   background: var(--surface-ground);
+  overflow-x: hidden;
+}
+
+.grid * {
+  box-sizing: border-box;
 }
 
 @media (max-width: 992px) {

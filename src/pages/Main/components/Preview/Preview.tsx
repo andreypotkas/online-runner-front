@@ -1,37 +1,20 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "primereact/button";
 
-import "./ParallaxSection.scss";
+import "./Preview.scss";
 
-const ParallaxSection = () => {
+const Preview = () => {
   const navigate = useNavigate();
   const parallaxRef = useRef(null);
 
   const handleClickRegister = () => navigate("/auth/register");
   const handleClickEvents = () => navigate("/events");
 
-  useEffect(() => {
-    const parallax = parallaxRef.current;
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      (parallax! as HTMLDivElement).style.backgroundPositionY = `${
-        scrollPosition * 0.5
-      }px`;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <div
-      className="col-12 md:col-6 p-6 text-center text-left flex align-items-center parallax-section"
+      className="col-12 md:col-6 p-6 text-center text-left flex align-items-center preview"
       ref={parallaxRef}
     >
       <section className="px-2">
@@ -68,4 +51,4 @@ const ParallaxSection = () => {
   );
 };
 
-export default ParallaxSection;
+export default Preview;
