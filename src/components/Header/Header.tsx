@@ -31,7 +31,7 @@ function Header() {
           <>
             <div className="flex gap-2 text-3xl text-primary align-items-center ">
               <FaRunning />
-              <span className="flex-shrink-0"> Run connect</span>
+              <span className="flex-shrink-0"> RunConnect</span>
             </div>
           </>
         }

@@ -1,4 +1,4 @@
-import { AuthResponse } from "@/types/user.types";
+import { AuthResponse } from "@/types/entities/user.type";
 
 export class LocalStorageService {
   static setAuthData = (data: AuthResponse): void => {

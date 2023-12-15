@@ -9,6 +9,8 @@ import {
 import { LocalStorageService } from "./api/localStorage.service";
 import MemoizedHeader from "./components/Header/Header";
 import { ThemeContext } from "./context/themeContext";
+import MemoizedAdminEventRewards from "./pages/Admin/AdminEventRewards/AdminEventRewards";
+import MemoizedCreateEvent from "./pages/Admin/CreateEvent/CreateEvent";
 import Auth from "./pages/Auth/Auth";
 import { AuthFormTypes } from "./pages/Auth/types/auth.types";
 import MemoizedEvents from "./pages/Events/Events";
@@ -43,6 +45,7 @@ function App() {
           <Suspense fallback={<></>}>
             <Routes>
               <Route path="/" element={<Main />} />
+
               <Route
                 path="/auth/login"
                 element={<Auth type={AuthFormTypes.LOGIN} />}
@@ -51,7 +54,17 @@ function App() {
                 path="/auth/register"
                 element={<Auth type={AuthFormTypes.REGISTER} />}
               />
+
               <Route path="/events" element={<MemoizedEvents />} />
+              <Route
+                path="/admin/create-event"
+                element={<MemoizedCreateEvent />}
+              />
+              <Route
+                path="/admin/create-event-reward"
+                element={<MemoizedAdminEventRewards />}
+              />
+
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </Suspense>

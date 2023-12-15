@@ -12,31 +12,22 @@ type Props = {
   type: AuthFormTypes;
 };
 
+const AuthForms: Record<AuthFormTypes, JSX.Element> = {
+  [AuthFormTypes.LOGIN]: <MemoizedLoginForm />,
+  [AuthFormTypes.REGISTER]: <MemoizedRegistrationForm />,
+};
+
 function Auth({ type }: Props) {
   const { user } = useAuthState();
   console.log(user);
 
-  const displayedForm = () => {
-    if (user) {
-      console.log("YES");
-
-      return <MemoizedSuccessLoggedIn />;
-    }
-
-    if (type === AuthFormTypes.LOGIN) {
-      return <MemoizedLoginForm />;
-    }
-
-    if (type === AuthFormTypes.REGISTER) {
-      return <MemoizedRegistrationForm />;
-    }
-  };
+  const displayedForm = AuthForms[type];
 
   return (
     <div className="layout-main-container">
       <div className={styles.page_container}>
         <MemoizedImageBlock />
-        {displayedForm()}
+        <>{user ? <MemoizedSuccessLoggedIn /> : displayedForm}</>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const initialValues: AuthFormInitialValues = {
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string()
-    .min(2, "Too Short!")
+    .min(6, "Too Short!")
     .max(20, "Too Long!")
     .required("Required"),
 });
@@ -29,7 +29,7 @@ const LoginSchema = Yup.object().shape({
 function LoginForm() {
   const { login, loading } = useAuthState();
 
-  const formik = useFormik({
+  const formik = useFormik<AuthFormInitialValues>({
     initialValues,
     onSubmit: (values) => {
       console.log(values);

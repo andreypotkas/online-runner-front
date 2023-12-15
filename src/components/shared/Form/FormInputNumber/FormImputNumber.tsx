@@ -4,16 +4,16 @@ import { FormikProps } from "formik";
 
 import { InputText } from "primereact/inputtext";
 
-import styles from "./FormInput.module.scss";
+import styles from "../FormInput/FormInput.module.scss";
 
-export type BaseInputProps = {
+export type Props = {
   field: string;
   placeholder: string;
   label: string;
   formik: FormikProps<any>;
 };
 
-function FormInput({ field, placeholder, label, formik }: BaseInputProps) {
+function FormInputNumber({ field, placeholder, label, formik }: Props) {
   return (
     <div className={styles.container}>
       <label htmlFor={field} className="block text-900 font-medium">
@@ -21,7 +21,7 @@ function FormInput({ field, placeholder, label, formik }: BaseInputProps) {
       </label>
       <InputText
         id={field}
-        type="text"
+        type="number"
         onChange={formik.handleChange}
         value={formik.values[field]}
         placeholder={placeholder}
@@ -34,11 +34,11 @@ function FormInput({ field, placeholder, label, formik }: BaseInputProps) {
   );
 }
 
-FormInput.defaultProps = {
+FormInputNumber.defaultProps = {
   field: "default",
-  label: "Текстовое поле",
-  placeholder: "Введите значение",
+  label: "Цена",
+  placeholder: "Введите цена",
 };
 
-const MemoizedBaseInput = React.memo(FormInput);
-export default MemoizedBaseInput;
+const MemoizedFormInputNumber = React.memo(FormInputNumber);
+export default MemoizedFormInputNumber;

@@ -32,6 +32,7 @@ function ThemeSwitcher() {
     <>
       <Button
         text
+        raised
         type="button"
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         icon={theme === "dark" ? "pi pi-sun" : "pi pi-moon"}

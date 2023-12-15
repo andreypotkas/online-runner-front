@@ -1,14 +1,15 @@
+import React from "react";
 import { FaMedal, FaRunning } from "react-icons/fa";
 import { GiHealing, GiPodiumWinner } from "react-icons/gi";
 import { IoTimeOutline } from "react-icons/io5";
 import { MdOutlineFreeCancellation } from "react-icons/md";
 
-export default function Advantages() {
+function Advantages() {
   return (
-    <div className="surface-ground text-center pb-8">
+    <section className="text-center surface-ground p-8">
       <div className="mb-3 font-bold text-3xl">
         <span className="text-900">Преимущества </span>
-        <span className="text-primary">Run Connect</span>
+        <span className="text-primary">RunConnect</span>
       </div>
       <div className="text-700 mb-6">
         Познакомьтесь с удивительными возможностями нашего приложения Run
@@ -16,7 +17,7 @@ export default function Advantages() {
         тренировках.
       </div>
       <div className="grid">
-        <div className="col-12 md:col-4">
+        <article className="col-12 md:col-4">
           <div className="p-2 border-1 border-round	surface-border h-full">
             <span
               className="p-3 shadow-2 mb-3 inline-block text-primary"
@@ -34,8 +35,8 @@ export default function Advantages() {
               времени.
             </span>
           </div>
-        </div>
-        <div className="col-12 md:col-4">
+        </article>
+        <article className="col-12 md:col-4">
           <div className="p-2 border-1 border-round	surface-border h-full">
             <span
               className="p-3 shadow-2 mb-3 inline-block  text-primary"
@@ -53,9 +54,8 @@ export default function Advantages() {
               друзей и финишируйте вместе!
             </span>
           </div>
-        </div>
-
-        <div className="col-12 md:col-4 ">
+        </article>
+        <article className="col-12 md:col-4 ">
           <div className="p-2 border-1 border-round	surface-border h-full">
             <span
               className="p-3 shadow-2 mb-3 inline-block text-primary"
@@ -73,9 +73,8 @@ export default function Advantages() {
               обгоняют более быстрые участники.
             </span>
           </div>
-        </div>
-
-        <div className="col-12 md:col-4 ">
+        </article>
+        <article className="col-12 md:col-4 ">
           <div className="p-2 border-1 border-round	surface-border h-full">
             <span
               className="p-3 shadow-2 mb-3 inline-block text-primary"
@@ -92,9 +91,8 @@ export default function Advantages() {
               и с каждым днём становиться лучшей версией себя!
             </span>
           </div>
-        </div>
-
-        <div className="col-12 md:col-4 ">
+        </article>
+        <article className="col-12 md:col-4 ">
           <div className="p-2 border-1 border-round	surface-border h-full">
             <span
               className="p-3 shadow-2 mb-3 inline-block text-primary"
@@ -111,8 +109,8 @@ export default function Advantages() {
               своём собственном графике и со своим темпом.
             </span>
           </div>
-        </div>
-        <div className="col-12 md:col-4 ">
+        </article>
+        <article className="col-12 md:col-4 ">
           <div className="p-2 border-1 border-round	surface-border h-full">
             <span
               className="p-3 shadow-2 mb-3 inline-block text-primary"
@@ -130,8 +128,11 @@ export default function Advantages() {
               уникальную медаль!
             </span>
           </div>
-        </div>
+        </article>
       </div>
-    </div>
+    </section>
   );
 }
+
+const MemoizedAdvantages = React.memo(Advantages);
+export default MemoizedAdvantages;
