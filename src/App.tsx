@@ -9,8 +9,7 @@ import {
 import { LocalStorageService } from "./api/localStorage.service";
 import MemoizedHeader from "./components/Header/Header";
 import { ThemeContext } from "./context/themeContext";
-import MemoizedAdminEventRewards from "./pages/Admin/AdminEventRewards/AdminEventRewards";
-import MemoizedCreateEvent from "./pages/Admin/CreateEvent/CreateEvent";
+import Admin from "./pages/Admin/Admin";
 import Auth from "./pages/Auth/Auth";
 import { AuthFormTypes } from "./pages/Auth/types/auth.types";
 import MemoizedEvents from "./pages/Events/Events";
@@ -31,7 +30,7 @@ function App() {
   useEffect(() => {
     const authData = LocalStorageService.getAuthData();
     if (authData) {
-      console.log("LOGIN FROM LOCAL_STORAGE", authData);
+      // console.log("LOGIN FROM LOCAL_STORAGE", authData);
 
       setAuthData(authData);
     }
@@ -56,14 +55,7 @@ function App() {
               />
 
               <Route path="/events" element={<MemoizedEvents />} />
-              <Route
-                path="/admin/create-event"
-                element={<MemoizedCreateEvent />}
-              />
-              <Route
-                path="/admin/create-event-reward"
-                element={<MemoizedAdminEventRewards />}
-              />
+              <Route path="/admin" element={<Admin />} />
 
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>

@@ -3,21 +3,20 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { Button } from "primereact/button";
-import { Chip } from "primereact/chip";
-import { Divider } from "primereact/divider";
 
 import FormImageSelect from "@/components/shared/Form/FormImageSelect/FormImageSelect";
 import MemoizedBaseInput from "@/components/shared/Form/FormInput/FormInput";
 import MemoizedFormInputNumber from "@/components/shared/Form/FormInputNumber/FormImputNumber";
 import FormTextArea from "@/components/shared/Form/FormTextArea/FormTextArea";
 import { useEventRewardsState } from "@/state/eventRewards.state";
-import { EventRewardInitialValues } from "@/types/entities/eventReward.type";
-
-import { FormProps } from "../../AdminEventRewards";
+import {
+  EventRewardFormProps,
+  EventRewardInitialValues,
+} from "@/types/entities/eventReward.type";
 
 type Props = {
-  formProps: FormProps;
-  setFormProps: React.Dispatch<React.SetStateAction<FormProps>>;
+  formProps: EventRewardFormProps;
+  setFormProps: React.Dispatch<React.SetStateAction<EventRewardFormProps>>;
 };
 
 const SignupSchema = Yup.object().shape({
@@ -76,12 +75,6 @@ function EventRewardForm({ formProps, setFormProps }: Props) {
     <form onSubmit={formik.handleSubmit}>
       <div className="surface-card flex flex-column gap-4">
         <div className="grid  p-4 border-round">
-          <Chip
-            label={
-              type === "create" ? "Создание награды" : "Редактирование награды"
-            }
-          />
-          <Divider />
           <MemoizedBaseInput
             formik={formik}
             placeholder="Название"

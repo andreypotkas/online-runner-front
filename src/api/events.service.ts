@@ -1,5 +1,9 @@
 import { API_BASE_URL } from "@/constants/common.constants";
-import { CreateEventDto } from "@/hooks/admin/Event/useCreateEvent";
+import {
+  CreateEventDto,
+  EventEntity,
+  UpdateEventDto,
+} from "@/types/entities/event.type";
 import {
   EventRewardEntity,
   EventRewardInitialValues,
@@ -8,12 +12,37 @@ import {
 import { axiosInstance } from "./axios.interceptor";
 
 export class EventsService {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  static async createEvent(data: CreateEventDto): Promise<any> {
+  static async createEvent(data: CreateEventDto): Promise<EventEntity> {
     const res = (await axiosInstance.post(API_BASE_URL + "events", data)).data;
 
     console.log("Event created: ", res);
+    return res;
+  }
+
+  static async getEvents(): Promise<EventEntity[]> {
+    const res = (await axiosInstance.get(API_BASE_URL + "events")).data;
+
+    console.log("Events: ", res);
     return res.data;
+  }
+
+  static async updateEvent(
+    id: number,
+    data: UpdateEventDto
+  ): Promise<EventEntity> {
+    const res = (await axiosInstance.put(API_BASE_URL + "events/" + id, data))
+      .data;
+
+    console.log(`Event with id: ${id} updated: `, res);
+    return res;
+  }
+
+  static async deleteEvent(id: number): Promise<EventEntity> {
+    const res = (await axiosInstance.delete(API_BASE_URL + "events/" + id))
+      .data;
+
+    console.log(`Event with id: ${id} deleted: `, res);
+    return res;
   }
 
   static async createEventReward(
@@ -32,14 +61,6 @@ export class EventsService {
     console.log("Event rewards: ", res);
     return res.data;
   }
-
-  // static async getEventReward(id: number): Promise<EventReward> {
-  //   const res = (await axiosInstance.get(API_BASE_URL + "event-reward/" + id))
-  //     .data;
-
-  //   console.log(`Event reward with id: ${id}: `, res);
-  //   return res.data;
-  // }
 
   static async updateEventReward(
     id: number,

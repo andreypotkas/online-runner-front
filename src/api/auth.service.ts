@@ -12,7 +12,6 @@ export class AuthService {
       API_BASE_URL + "auth/email/login",
       data
     );
-    console.log(res);
     return res.data;
   }
 
@@ -21,7 +20,6 @@ export class AuthService {
       API_BASE_URL + "auth/email/register",
       data
     );
-    console.log(res);
     return res.data;
   }
 }

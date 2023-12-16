@@ -14,8 +14,10 @@ export default function FormDatePicker({ formik, field, label }: Props) {
     <div className="col-12 md:col-6 mb-4 flex gap-2 flex-column">
       <span className="font-medium">{label}</span>{" "}
       <Calendar
-        value={formik.values[field]}
-        onChange={(e) => formik.setFieldValue(field, e.value)}
+        value={new Date(+formik.values[field])}
+        onChange={(e) =>
+          formik.setFieldValue(field, `${Date.parse(`${e.value}`)}`)
+        }
         showIcon
       />
     </div>

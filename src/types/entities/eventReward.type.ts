@@ -1,3 +1,5 @@
+import { FormTypes } from "../common.types";
+
 export type EventRewardEntity = {
   id: number;
   name: string;
@@ -14,4 +16,10 @@ export type EventRewardInitialValues = {
   description: string;
   price: number;
   image: File | string | null;
+};
+
+export type EventRewardFormProps = {
+  visible: boolean;
+  type: FormTypes;
+  initialValues: EventRewardInitialValues;
 };

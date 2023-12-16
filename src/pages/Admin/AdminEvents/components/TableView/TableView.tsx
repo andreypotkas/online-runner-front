@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from "react";
 
 import { Button } from "primereact/button";
@@ -5,19 +6,17 @@ import { Column } from "primereact/column";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { DataTable } from "primereact/datatable";
 
-import { EVENT_REWARD_INIT_VALUES } from "@/constants/formInitialValues.constants";
-import { useEventRewardsState } from "@/state/eventRewards.state";
-import {
-  EventRewardEntity,
-  EventRewardFormProps,
-} from "@/types/entities/eventReward.type";
+import { EVENT_INIT_VALUES } from "@/constants/formInitialValues.constants";
+import { useEventsState } from "@/state/events.state";
+import { EventEntity, EventFormProps } from "@/types/entities/event.type";
+import { EventRewardEntity } from "@/types/entities/eventReward.type";
 
 type Props = {
-  setFormProps: React.Dispatch<React.SetStateAction<EventRewardFormProps>>;
+  setFormProps: React.Dispatch<React.SetStateAction<EventFormProps>>;
 };
 
 function TableView({ setFormProps }: Props) {
-  const { rewards, remove, getAll } = useEventRewardsState();
+  const { events, remove, getAll } = useEventsState();
 
   const imageBodyTemplate = (product: EventRewardEntity) => {
     return (
@@ -29,11 +28,11 @@ function TableView({ setFormProps }: Props) {
     );
   };
 
-  const dateBodyTemplate = (product: EventRewardEntity) => {
+  const dateBodyTemplate = (product: EventEntity) => {
     return new Date(product.createdAt).toLocaleDateString();
   };
 
-  const actionsBodyTemplate = (product: EventRewardEntity) => {
+  const actionsBodyTemplate = (product: EventEntity) => {
     const { id } = product;
     return (
       <div className="flex gap-2">
@@ -53,7 +52,7 @@ function TableView({ setFormProps }: Props) {
 
   const handleCreate = () => {
     setFormProps({
-      initialValues: EVENT_REWARD_INIT_VALUES,
+      initialValues: EVENT_INIT_VALUES,
       visible: true,
       type: "create",
     });
@@ -61,8 +60,17 @@ function TableView({ setFormProps }: Props) {
 
   const handleRemove = (id: number) => remove(id);
 
-  const handleUpdate = (product: EventRewardEntity) => {
-    setFormProps({ initialValues: product, visible: true, type: "update" });
+  const handleUpdate = (product: EventEntity) => {
+    const initialValues = {
+      ...product,
+      participationOptions: product.participationOptions.map((item) => item.id),
+      status: product.status.id,
+      rewards: product.rewards.map((item) => item.id),
+      category: product.category.id,
+    };
+    console.log(initialValues);
+
+    setFormProps({ initialValues, visible: true, type: "update" });
   };
 
   const header = (
@@ -72,7 +80,7 @@ function TableView({ setFormProps }: Props) {
     </div>
   );
 
-  const footer = `Всего создано ${rewards ? rewards.length : 0} наград.`;
+  const footer = `Всего создано ${events ? events.length : 0} наград.`;
 
   const confirm1 = (id: number) => {
     confirmDialog({
@@ -91,16 +99,35 @@ function TableView({ setFormProps }: Props) {
   return (
     <>
       <DataTable
-        value={rewards ?? []}
+        scrollable
+        value={events ?? []}
         header={header}
         footer={footer}
-        tableStyle={{ minWidth: "60rem" }}
       >
         <Column header="Название" field="name"></Column>
         <Column header="Картинка" body={imageBodyTemplate}></Column>
-        <Column header="Описание" field="description"></Column>
         <Column header="Цена" field="price"></Column>
+        <Column header="Статус" body={(data) => data?.status?.name}></Column>
+        <Column
+          header="Категория"
+          body={(data) => data?.category?.name}
+        ></Column>
+        <Column
+          header="Время проведения"
+          body={(data) => (
+            <span>
+              {new Date(+data.startDate).toLocaleDateString()} -
+              {new Date(+data.endDate).toLocaleDateString()}
+            </span>
+          )}
+        ></Column>
+        <Column
+          header="Кол-во участников"
+          body={(data) => data.participants.length}
+        ></Column>
+
         <Column header="Дата создания" body={dateBodyTemplate}></Column>
+
         <Column header="Действия" body={actionsBodyTemplate}></Column>
       </DataTable>
       <ConfirmDialog />

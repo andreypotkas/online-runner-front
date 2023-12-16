@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+}
+
+.side_bar {
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  min-width: 18rem !important;
+  min-height: 88vh;
+  background: var(--surface-card);
+}
+
+.page {
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  background: var(--surface-card);
+  min-height: 88vh;
+  overflow: hidden;
+  flex-grow: 1;
+}
