@@ -7,11 +7,15 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint --fix . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cdk:bs": "npx cdk bootstrap",
+    "cdk:deploy": "npx cdk deploy",
+    "cdk:destroy": "npx cdk destroy"
   },
   "dependencies": {
-    "aws-sdk": "^2.1519.0",
+    "aws-cdk-lib": "^2.115.0",
     "axios": "^1.6.2",
+    "buffer": "^6.0.3",
     "formik": "^2.4.5",
     "immer": "^10.0.3",
     "primeflex": "^3.3.1",

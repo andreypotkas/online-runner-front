@@ -11,7 +11,7 @@ function EventRewardCard({ item }: Props) {
     name,
     description,
     price,
-    image: { path },
+    // image: { path },
   } = item;
   return (
     <div className="col-12 md:col-3">
@@ -23,7 +23,7 @@ function EventRewardCard({ item }: Props) {
           >
             {(price ?? 10) + " р."}
           </span>
-          <img src={path} className="w-full h-14rem" alt="list-4-6" />
+          {/* <img src={path} className="w-full h-14rem" alt="list-4-6" /> */}
         </div>
         <div className="flex justify-content-between align-items-center">
           <span className="text-900 font-medium text-xl h-3rem text-overflow-ellipsis overflow-hidden">
