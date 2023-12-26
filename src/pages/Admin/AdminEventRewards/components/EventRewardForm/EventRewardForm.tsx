@@ -3,11 +3,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { Button } from "primereact/button";
+import { InputNumber } from "primereact/inputnumber";
+import { InputText } from "primereact/inputtext";
 
 import FormImageSelect from "@/components/shared/Form/FormImageSelect/FormImageSelect";
-import MemoizedBaseInput from "@/components/shared/Form/FormInput/FormInput";
-import MemoizedFormInputNumber from "@/components/shared/Form/FormInputNumber/FormImputNumber";
-import FormTextArea from "@/components/shared/Form/FormTextArea/FormTextArea";
 import { useEventRewardsState } from "@/state/eventRewards.state";
 import {
   EventRewardFormProps,
@@ -19,24 +18,19 @@ type Props = {
   setFormProps: React.Dispatch<React.SetStateAction<EventRewardFormProps>>;
 };
 
-const SignupSchema = Yup.object().shape({
-  // name: Yup.string()
-  //   .min(2, "Too Short!")
-  //   .max(30, "Too Long!")
-  //   .required("Required"),
-  // description: Yup.string()
-  //   .min(2, "Too Short!")
-  //   .max(50, "Too Long!")
-  //   .required("Required"),
-  // category: Yup.string()
-  //   .min(2, "Too Short!")
-  //   .max(50, "Too Long!")
-  //   .required("Required"),
-  // startDate: Yup.string()
-  //   .min(2, "Too Short!")
-  //   .max(50, "Too Long!")
-  //   .required("Required"),
-  // endDate: Yup.string().email("Invalid email").required("Required"),
+const EventRewardSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, "Слишком короткое название.")
+    .max(40, "Слишком длинное название.")
+    .required("Введите название."),
+  description: Yup.string()
+    .min(2, "Слишком короткое название.")
+    .max(200, "Слишком длинное название.")
+    .required("Введите название."),
+  price: Yup.number()
+    .required("Поле не может быть пустым.")
+    .integer("Число должно быть целым."),
+  image: Yup.mixed().required("Выберите файл."),
 });
 
 function EventRewardForm({ formProps, setFormProps }: Props) {
@@ -44,10 +38,6 @@ function EventRewardForm({ formProps, setFormProps }: Props) {
   const isCreationForm = type === "create";
 
   const { create, update } = useEventRewardsState();
-
-  const handleCreateEventReward = (values: EventRewardInitialValues) => {
-    create(values);
-  };
 
   const handleUpdateEventReward = (
     prevValues: EventRewardInitialValues,
@@ -62,38 +52,75 @@ function EventRewardForm({ formProps, setFormProps }: Props) {
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      console.log("event reward values", values);
+      console.log("EVENT REWARD FORM VALUES: ", values);
       isCreationForm
-        ? handleCreateEventReward(values)
+        ? create(values)
         : handleUpdateEventReward(initialValues, values);
       setFormProps((state) => ({ ...state, visible: false }));
     },
-    validationSchema: SignupSchema,
+    validationSchema: EventRewardSchema,
   });
 
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="surface-card flex flex-column gap-4">
-        <div className="grid  p-4 border-round">
-          <MemoizedBaseInput
-            formik={formik}
-            placeholder="Название"
-            field="name"
-            label="Название"
-          />
-          <MemoizedFormInputNumber
-            formik={formik}
-            placeholder="Цена"
-            field="price"
-            label="Цена"
-          />
+        <div className="grid border-round">
+          <div className="col-6 flex flex-column gap-2">
+            <label htmlFor={"name"} className="block text-900 font-medium mb-2">
+              Название
+            </label>
+            <InputText
+              id={"name"}
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values["name"]}
+              placeholder={"Название"}
+              className="w-full"
+            />
+            <span className="validation-form-error">
+              <>{formik.errors["name"]}</>
+            </span>
+          </div>
 
-          <FormTextArea
-            field="description"
-            label="Описание"
-            placeholder="Описание"
-            formik={formik}
-          />
+          <div className="col-6 flex flex-column gap-2">
+            <label
+              htmlFor={"price"}
+              className="block text-900 font-medium mb-2"
+            >
+              Цена
+            </label>
+            <InputNumber
+              id="price"
+              min={1}
+              value={formik.values["price"]}
+              showButtons
+              buttonLayout="horizontal"
+              incrementButtonIcon="pi pi-plus"
+              decrementButtonIcon="pi pi-minus"
+              onChange={(e) => formik.setFieldValue("price", e.value)}
+            />
+            <div className="validation-form-error">
+              {formik.errors["price"]}
+            </div>
+          </div>
+
+          <div className="col-12 md:col-6 mb-4 flex gap-2 flex-column">
+            <label htmlFor={"description"} className="font-medium">
+              Описание
+            </label>
+            <textarea
+              id={"description"}
+              value={formik.values["description"]}
+              onChange={(e) =>
+                formik.setFieldValue("description", e.target.value)
+              }
+              className="p-inputtextarea p-inputtext p-component p-inputtextarea-resizable h-full"
+            ></textarea>
+            <div className="validation-form-error">
+              {formik.errors["description"]}
+            </div>
+          </div>
+
           <FormImageSelect formik={formik} field="image" />
 
           <Button

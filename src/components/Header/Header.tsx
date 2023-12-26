@@ -1,9 +1,10 @@
 import React from "react";
-import { FaRunning } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import { Menubar } from "primereact/menubar";
 import { MenuItem } from "primereact/menuitem";
+
+import logo from "@/assets/images/Header/logo.png";
 
 import MemoizedUserIcon from "./components/UserIcon/UserIcon";
 
@@ -30,8 +31,12 @@ function Header() {
         start={
           <>
             <div className="flex gap-2 text-3xl text-primary align-items-center ">
-              <FaRunning />
-              <span className="flex-shrink-0"> RunConnect</span>
+              <img
+                src={logo}
+                alt="logo"
+                style={{ width: "3rem", height: "3rem" }}
+              />
+              <div className="m-0 text-center flex-shrink-0">RunConnect</div>
             </div>
           </>
         }

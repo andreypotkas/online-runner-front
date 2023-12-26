@@ -2,3 +2,9 @@
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important;
 }
+
+.p-datatable .p-datatable-tbody {
+  tr:hover {
+    background: var(--surface-hover);
+  }
+}

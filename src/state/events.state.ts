@@ -26,7 +26,6 @@ export const useEventsState = create<UseEvents, [["zustand/immer", never]]>(
   immer((set) => ({
     events: null,
     loading: null,
-
     error: null,
     getAll: async () => {
       try {

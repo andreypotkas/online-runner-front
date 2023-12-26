@@ -20,7 +20,7 @@ export class ImageService {
 
   async remove(imageUrl: string): Promise<void> {
     try {
-      const key = imageUrl.split(".com/")[1]; // Extract key from the image URL
+      const key = imageUrl.split(".com/uploads/")[1]; // Extract key from the image URL
 
       (await axiosInstance.delete(API_BASE_URL + `files/delete/${key}`)).data;
     } catch (e) {

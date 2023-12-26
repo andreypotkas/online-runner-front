@@ -17,7 +17,7 @@ import Main from "./pages/Main/Main";
 import { useAuthState } from "./state/auth.state";
 import { ThemeModes } from "./types/common.types";
 
-import "./styles/index.scss";
+import "@/styles/Index.scss";
 import "primereact/resources/primereact.min.css";
 import "/node_modules/primeflex/primeflex.css";
 import "primeicons/primeicons.css";

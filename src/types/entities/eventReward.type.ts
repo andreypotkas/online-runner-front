@@ -21,5 +21,5 @@ export type EventRewardInitialValues = {
 export type EventRewardFormProps = {
   visible: boolean;
   type: FormTypes;
-  initialValues: EventRewardInitialValues;
+  initialValues: EventRewardInitialValues | EventRewardEntity;
 };

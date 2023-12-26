@@ -1,88 +1,24 @@
 import React, { useEffect } from "react";
 
-import { Button } from "primereact/button";
 import { Column } from "primereact/column";
-import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+import { ConfirmDialog } from "primereact/confirmdialog";
 import { DataTable } from "primereact/datatable";
 
-import { EVENT_REWARD_INIT_VALUES } from "@/constants/formInitialValues.constants";
+import MemoizedImageBodyTemplate from "@/pages/Admin/AdminEvents/components/TableView/components/ImageBodyTemplate";
 import { useEventRewardsState } from "@/state/eventRewards.state";
-import {
-  EventRewardEntity,
-  EventRewardFormProps,
-} from "@/types/entities/eventReward.type";
+import { EventRewardFormProps } from "@/types/entities/eventReward.type";
+
+import MemoizedActionsBodyTemplate from "./components/ActionsBodyTemplate";
+import MemoizedTableHeader from "./components/TableHeader";
 
 type Props = {
   setFormProps: React.Dispatch<React.SetStateAction<EventRewardFormProps>>;
 };
 
 function TableView({ setFormProps }: Props) {
-  const { rewards, remove, getAll } = useEventRewardsState();
-
-  const imageBodyTemplate = (product: EventRewardEntity) => {
-    return (
-      <img
-        src={product?.image}
-        alt={product?.name}
-        className="w-6rem h-4rem shadow-2 border-round"
-      />
-    );
-  };
-
-  const dateBodyTemplate = (product: EventRewardEntity) => {
-    return new Date(product.createdAt).toLocaleDateString();
-  };
-
-  const actionsBodyTemplate = (product: EventRewardEntity) => {
-    const { id } = product;
-    return (
-      <div className="flex gap-2">
-        <Button
-          onClick={() => confirm1(id)}
-          severity="danger"
-          icon={"pi pi-trash"}
-        />
-        <Button
-          onClick={() => handleUpdate(product)}
-          severity="warning"
-          icon={"pi pi-file-edit"}
-        />
-      </div>
-    );
-  };
-
-  const handleCreate = () => {
-    setFormProps({
-      initialValues: EVENT_REWARD_INIT_VALUES,
-      visible: true,
-      type: "create",
-    });
-  };
-
-  const handleRemove = (id: number) => remove(id);
-
-  const handleUpdate = (product: EventRewardEntity) => {
-    setFormProps({ initialValues: product, visible: true, type: "update" });
-  };
-
-  const header = (
-    <div className="flex flex-wrap align-items-center justify-content-between gap-2">
-      <span className="text-xl text-900 font-bold">Награды</span>
-      <Button icon="pi pi-plus-circle" onClick={handleCreate} />
-    </div>
-  );
+  const { rewards, getAll } = useEventRewardsState();
 
   const footer = `Всего создано ${rewards ? rewards.length : 0} наград.`;
-
-  const confirm1 = (id: number) => {
-    confirmDialog({
-      message: "Вы уверены что хотите удалить?",
-      header: "Подтверждение",
-      icon: "pi pi-exclamation-triangle",
-      accept: () => handleRemove(id),
-      reject: () => {},
-    });
-  };
 
   useEffect(() => {
     getAll();
@@ -92,16 +28,32 @@ function TableView({ setFormProps }: Props) {
     <>
       <DataTable
         value={rewards ?? []}
-        header={header}
+        header={<MemoizedTableHeader setFormProps={setFormProps} />}
         footer={footer}
-        tableStyle={{ minWidth: "60rem" }}
+        tableStyle={{
+          minWidth: "60rem",
+        }}
       >
         <Column header="Название" field="name"></Column>
-        <Column header="Картинка" body={imageBodyTemplate}></Column>
+        <Column
+          header="Картинка"
+          body={(product) => <MemoizedImageBodyTemplate product={product} />}
+        ></Column>
         <Column header="Описание" field="description"></Column>
         <Column header="Цена" field="price"></Column>
-        <Column header="Дата создания" body={dateBodyTemplate}></Column>
-        <Column header="Действия" body={actionsBodyTemplate}></Column>
+        <Column
+          header="Дата создания"
+          body={(product) => new Date(product.createdAt).toLocaleDateString()}
+        ></Column>
+        <Column
+          header="Действия"
+          body={(product) => (
+            <MemoizedActionsBodyTemplate
+              product={product}
+              setFormProps={setFormProps}
+            />
+          )}
+        ></Column>
       </DataTable>
       <ConfirmDialog />
     </>

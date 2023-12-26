@@ -38,17 +38,15 @@ export default function Admin() {
       command: () => setCurrentPage(AdminPagesTypes.EVENT_REWARDS),
     },
   ];
+
   return (
-    <div className={styles.wrapper}>
-      {window.innerWidth > 920 ? (
-        <div className={styles.side_bar}>
-          <Menu model={items} className="w-full" />
-        </div>
-      ) : (
-        <div className="surface-card">
-          <Button icon="pi pi-arrow-right " onClick={() => setVisible(true)} />
-        </div>
-      )}
+    <div className={styles.wrapper + " md:flex-row flex-column"}>
+      <div className={styles.side_bar + " md:block hidden"}>
+        <Menu model={items} className="w-full" />
+      </div>
+      <div className="surface-card md:hidden block">
+        <Button icon="pi pi-bars" onClick={() => setVisible(true)} />
+      </div>
       <div className={styles.page}>{AdminPages[currentPage]}</div>
 
       <Sidebar visible={visible} onHide={() => setVisible(false)}>

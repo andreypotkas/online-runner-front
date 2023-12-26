@@ -8,22 +8,20 @@ import { EventRewardFormProps } from "@/types/entities/eventReward.type";
 import MemoizedCreateEventRewardForm from "./components/EventRewardForm/EventRewardForm";
 import MemoizedTableView from "./components/TableView/TableView";
 
-import "./AdminEventRewards.scss";
-
 function AdminEventRewards() {
   const [formProps, setFormProps] = useState<EventRewardFormProps>(
     EVENT_REWARD_INIT_FORM_PROPS
   );
+  const header =
+    formProps.type === "create"
+      ? "Форма создания награды"
+      : "Форма изменения награды";
 
   return (
     <div>
       <MemoizedTableView setFormProps={setFormProps} />
       <Dialog
-        header={
-          formProps.type === "create"
-            ? "Форма создания награды"
-            : "Форма изменения награды"
-        }
+        header={header}
         visible={formProps.visible}
         style={{ maxWidth: "95vw" }}
         onHide={() => setFormProps((state) => ({ ...state, visible: false }))}

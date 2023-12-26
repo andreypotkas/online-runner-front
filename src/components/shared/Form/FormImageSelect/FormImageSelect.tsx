@@ -105,6 +105,9 @@ export default function FormImageSelect({ formik, field }: Props) {
         chooseOptions={chooseOptions}
         onSelect={(e) => formik.setFieldValue(field, e.files[0])}
       />
+      <div className="validation-form-error">
+        <>{formik.errors["image"]}</>
+      </div>
     </div>
   );
 }
