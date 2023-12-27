@@ -8,9 +8,13 @@ export type TextAreaProps = {
   formik: FormikProps<any>;
 };
 
-export default function FormTextArea({ label, field, formik }: TextAreaProps) {
+export default function FormikTextArea({
+  label,
+  field,
+  formik,
+}: TextAreaProps) {
   return (
-    <div className="col-12 md:col-6 mb-4 flex gap-2 flex-column">
+    <div className="flex gap-2 flex-column h-full">
       <label htmlFor={label} className="font-medium">
         {label}
       </label>
@@ -18,8 +22,11 @@ export default function FormTextArea({ label, field, formik }: TextAreaProps) {
         id={label}
         value={formik.values[field]}
         onChange={(e) => formik.setFieldValue(field, e.target.value)}
-        className="p-inputtextarea p-inputtext p-component p-inputtextarea-resizable h-full"
+        className="p-inputtextarea p-inputtext p-component p-inputtextarea-resizable h-full w-full"
       ></textarea>
+      <div className="validation-form-error">
+        <>{formik.errors[field]}</>
+      </div>
     </div>
   );
 }

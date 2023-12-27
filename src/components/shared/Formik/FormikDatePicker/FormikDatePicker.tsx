@@ -9,7 +9,7 @@ type Props = {
   formik: FormikProps<any>;
 };
 
-export default function FormDatePicker({ formik, field, label }: Props) {
+export default function FormikDatePicker({ formik, field, label }: Props) {
   return (
     <div className="col-12 md:col-6 mb-4 flex gap-2 flex-column">
       <span className="font-medium">{label}</span>{" "}

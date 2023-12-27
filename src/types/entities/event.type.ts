@@ -2,6 +2,10 @@
 import { FormTypes } from "../common.types";
 
 import { EventRewardEntity } from "./eventReward.type";
+import {
+  ParticipationOption,
+  ParticipationOptionInitialValues,
+} from "./participationOption.type";
 
 export type EventEntity = {
   id: number;
@@ -32,13 +36,6 @@ interface Status {
   __entity: string;
 }
 
-interface ParticipationOption {
-  id: ParticipationOptionsEnum;
-  name: string;
-  price: string;
-  __entity: "ParticipationOption";
-}
-
 export interface EventData {
   data: Event[];
   hasNextPage: boolean;
@@ -49,9 +46,8 @@ export type EventInitialValues = {
   name: string;
   description: string;
   image: File | string | null;
-  rewards: number[];
   category: EventCategoriesEnum;
-  participationOptions: ParticipationOptionsEnum[];
+  participationOptions: ParticipationOptionInitialValues[];
   startDate: string | number;
   endDate: string | number;
 };
@@ -84,19 +80,10 @@ export type EventFormProps = {
 export type CreateEventDto = {
   image: string;
   participants: never[];
-  rewards: {
-    id:
-      | number
-      | {
-          id: number;
-        };
-  }[];
   participationOptions: {
-    id:
-      | number
-      | {
-          id: number;
-        };
+    name: string;
+    reward: { id: number };
+    price: number;
   }[];
   id?: number | undefined;
   name: string;
@@ -111,9 +98,7 @@ export type UpdateEventDto = {
   image: string;
   name?: string;
   description?: string;
-  rewards?: { id: number }[];
   category?: EventCategoriesEnum;
-  participationOptions?: { id: ParticipationOptionsEnum }[];
   startDate?: string | number;
   endDate?: string | number;
 };

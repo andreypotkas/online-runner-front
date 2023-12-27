@@ -14,7 +14,6 @@ export type EventRewardInitialValues = {
   id?: number;
   name: string;
   description: string;
-  price: number;
   image: File | string | null;
 };
 

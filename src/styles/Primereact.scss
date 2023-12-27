@@ -8,3 +8,11 @@
     background: var(--surface-hover);
   }
 }
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+  background: var(--surface-card);
+}
+
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
+  background: var(--surface-card);
+}

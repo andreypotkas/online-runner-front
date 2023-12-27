@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
 import { FormikProps } from "formik";
 
 import { InputText } from "primereact/inputtext";
-
-import styles from "./FormInput.module.scss";
 
 export type BaseInputProps = {
   field: string;
@@ -13,10 +10,15 @@ export type BaseInputProps = {
   formik: FormikProps<any>;
 };
 
-function FormInput({ field, placeholder, label, formik }: BaseInputProps) {
+export default function FormikTextInput({
+  field,
+  placeholder,
+  label,
+  formik,
+}: BaseInputProps) {
   return (
-    <div className={styles.container}>
-      <label htmlFor={field} className="block text-900 font-medium">
+    <>
+      <label htmlFor={field} className="block text-900 font-medium mb-2">
         {label}
       </label>
       <InputText
@@ -27,18 +29,15 @@ function FormInput({ field, placeholder, label, formik }: BaseInputProps) {
         placeholder={placeholder}
         className="w-full mb-4"
       />
-      <span className={styles.error}>
+      <span className="validation-form-error">
         <>{formik.errors[field]}</>
       </span>
-    </div>
+    </>
   );
 }
 
-FormInput.defaultProps = {
+FormikTextInput.defaultProps = {
   field: "default",
   label: "Текстовое поле",
   placeholder: "Введите значение",
 };
-
-const MemoizedBaseInput = React.memo(FormInput);
-export default MemoizedBaseInput;

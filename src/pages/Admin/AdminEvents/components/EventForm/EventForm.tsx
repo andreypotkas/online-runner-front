@@ -4,22 +4,21 @@ import * as Yup from "yup";
 
 import { Button } from "primereact/button";
 
-import FormDatePicker from "@/components/shared/Form/FormDatePicker/FormDatePicker";
-import FormDropdown from "@/components/shared/Form/FormDropdown/FormDropdown";
-import FormImageSelect from "@/components/shared/Form/FormImageSelect/FormImageSelect";
-import MemoizedBaseInput from "@/components/shared/Form/FormInput/FormInput";
-import FormMultiSelect from "@/components/shared/Form/FormMultiSelect/FormMultiSelect";
-import FormMultiSelectTemplate from "@/components/shared/Form/FormMultiSelect/FormMultiSelectTemplate";
-import FormTextArea from "@/components/shared/Form/FormTextArea/FormTextArea";
+import FormikDatePicker from "@/components/shared/Formik/FormikDatePicker/FormikDatePicker";
+import FormikDropdown from "@/components/shared/Formik/FormikDropdown/FormikDropdown";
+import FormImageSelect from "@/components/shared/Formik/FormikImageSelect/FormikImageSelect";
+import FormikTextArea from "@/components/shared/Formik/FormikTextArea/FormikTextArea";
+import FormikTextInput from "@/components/shared/Formik/FormikTextInput/FormikTextInput";
 import { useEventRewardsState } from "@/state/eventRewards.state";
 import { useEventsState } from "@/state/events.state";
 import {
   EventCategoriesEnum,
   EventFormProps,
   EventInitialValues,
-  ParticipationOptionsEnum,
   StatusEnum,
 } from "@/types/entities/event.type";
+
+import EventParticipationForm from "./components/EventParticipationForm";
 
 type Props = {
   formProps: EventFormProps;
@@ -38,31 +37,28 @@ const statuses = [
   { name: "Не активный", code: StatusEnum.inactive },
 ];
 
-const participationOptions = [
-  { name: "Бесплатный", code: ParticipationOptionsEnum.free },
-  { name: "Базовый", code: ParticipationOptionsEnum.basic },
-  { name: "Медиум", code: ParticipationOptionsEnum.medium },
-  { name: "Продвинутый", code: ParticipationOptionsEnum.advanced },
-];
+const EventSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, "Слишком короткое название.")
+    .max(40, "Слишком длинное название.")
+    .required("Введите название."),
+  description: Yup.string()
+    .min(2, "Слишком короткое название.")
+    .max(500, "Слишком длинное название.")
+    .required("Введите название."),
+  image: Yup.mixed().required("Выберите файл."),
 
-const SignupSchema = Yup.object().shape({
-  // name: Yup.string()
-  //   .min(2, "Too Short!")
-  //   .max(30, "Too Long!")
-  //   .required("Required"),
-  // description: Yup.string()
-  //   .min(2, "Too Short!")
-  //   .max(50, "Too Long!")
-  //   .required("Required"),
-  // category: Yup.string()
-  //   .min(2, "Too Short!")
-  //   .max(50, "Too Long!")
-  //   .required("Required"),
-  // startDate: Yup.string()
-  //   .min(2, "Too Short!")
-  //   .max(50, "Too Long!")
-  //   .required("Required"),
-  // endDate: Yup.string().email("Invalid email").required("Required"),
+  category: Yup.mixed().required("Выберите категорию."),
+  participationOptions: Yup.array()
+    .of(
+      Yup.object({
+        name: Yup.string().required(),
+        price: Yup.number().required(),
+        reward: Yup.number().required(),
+      })
+    )
+    .min(1, "Выберите хотя бы 1 вариант участия.")
+    .required("Выберите хотя бы 1 вариант участия."),
 });
 
 function EventForm({ formProps, setFormProps }: Props) {
@@ -71,10 +67,6 @@ function EventForm({ formProps, setFormProps }: Props) {
 
   const { create, update } = useEventsState();
   const { rewards, getAll } = useEventRewardsState();
-
-  const handleCreateEvent = (values: EventInitialValues) => {
-    create(values);
-  };
 
   const handleUpdateEvent = (
     prevValues: EventInitialValues,
@@ -89,75 +81,82 @@ function EventForm({ formProps, setFormProps }: Props) {
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      console.log("event values", values);
+      console.log("EVENT FORM VALUES", values);
 
       isCreationForm
-        ? handleCreateEvent(values)
+        ? create(values)
         : handleUpdateEvent(initialValues, values);
       setFormProps((state) => ({ ...state, visible: false }));
     },
-    validationSchema: SignupSchema,
+    validationSchema: EventSchema,
   });
 
   useEffect(() => {
-    getAll();
-  }, [getAll]);
+    isCreationForm && getAll();
+  }, [getAll, isCreationForm]);
 
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="flex flex-column gap-2 py-4">
         <div className="grid">
-          <MemoizedBaseInput
+          <FormikTextInput
             formik={formik}
             placeholder="Название"
             field="name"
             label="Название"
           />
 
-          <FormTextArea
-            field="description"
-            label="Описание"
-            placeholder="Описание"
-            formik={formik}
-          />
+          <div className="col-12 md:col-6 flex gap-2 flex-column">
+            <FormikTextArea
+              field="description"
+              label="Описание"
+              placeholder="Описание"
+              formik={formik}
+            />
+          </div>
+
           <FormImageSelect formik={formik} field="image" />
-          <FormDatePicker
+
+          <FormikDatePicker
             field={"startDate"}
             label={"Дата начала"}
             formik={formik}
           />
-          <FormDatePicker
+          <FormikDatePicker
             field={"endDate"}
             label={"Дата окончания"}
             formik={formik}
           />
-          <FormMultiSelect
-            items={participationOptions}
-            field={"participationOptions"}
-            label={"Варианты участия"}
-            formik={formik}
-          />
-          <FormDropdown
+
+          <FormikDropdown
             items={categories}
             field={"category"}
             label={"Категория"}
             formik={formik}
           />
-          <FormDropdown
+          <FormikDropdown
             items={statuses}
             field={"status"}
             label={"Статус"}
             formik={formik}
+            placeholder="Выберите статус"
           />
+        </div>
 
-          {rewards && (
-            <FormMultiSelectTemplate
-              items={rewards}
-              field={"rewards"}
-              label={"Награды"}
-              formik={formik}
-            />
-          )}
+        <div>
+          <div className="flex gap-2 align-items-center mb-2">
+            Варианты участия
+          </div>
+
+          <div className="flex flex-column gap-2">
+            {rewards && isCreationForm && (
+              <EventParticipationForm
+                key={Math.random()}
+                rewards={rewards}
+                eventFormik={formik}
+              />
+            )}
+          </div>
         </div>
 
         <Button

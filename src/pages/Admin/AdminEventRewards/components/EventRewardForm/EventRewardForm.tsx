@@ -3,10 +3,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { Button } from "primereact/button";
-import { InputNumber } from "primereact/inputnumber";
-import { InputText } from "primereact/inputtext";
 
-import FormImageSelect from "@/components/shared/Form/FormImageSelect/FormImageSelect";
+import FormikImageSelect from "@/components/shared/Formik/FormikImageSelect/FormikImageSelect";
+import FormikTextArea from "@/components/shared/Formik/FormikTextArea/FormikTextArea";
+import FormikTextInput from "@/components/shared/Formik/FormikTextInput/FormikTextInput";
 import { useEventRewardsState } from "@/state/eventRewards.state";
 import {
   EventRewardFormProps,
@@ -27,9 +27,6 @@ const EventRewardSchema = Yup.object().shape({
     .min(2, "Слишком короткое название.")
     .max(200, "Слишком длинное название.")
     .required("Введите название."),
-  price: Yup.number()
-    .required("Поле не может быть пустым.")
-    .integer("Число должно быть целым."),
   image: Yup.mixed().required("Выберите файл."),
 });
 
@@ -65,63 +62,25 @@ function EventRewardForm({ formProps, setFormProps }: Props) {
     <form onSubmit={formik.handleSubmit}>
       <div className="surface-card flex flex-column gap-4">
         <div className="grid border-round">
-          <div className="col-6 flex flex-column gap-2">
-            <label htmlFor={"name"} className="block text-900 font-medium mb-2">
-              Название
-            </label>
-            <InputText
-              id={"name"}
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values["name"]}
-              placeholder={"Название"}
-              className="w-full"
+          <div className="col-12 flex flex-column gap-2">
+            <FormikTextInput
+              formik={formik}
+              placeholder="Название"
+              field="name"
+              label="Название"
             />
-            <span className="validation-form-error">
-              <>{formik.errors["name"]}</>
-            </span>
           </div>
 
-          <div className="col-6 flex flex-column gap-2">
-            <label
-              htmlFor={"price"}
-              className="block text-900 font-medium mb-2"
-            >
-              Цена
-            </label>
-            <InputNumber
-              id="price"
-              min={1}
-              value={formik.values["price"]}
-              showButtons
-              buttonLayout="horizontal"
-              incrementButtonIcon="pi pi-plus"
-              decrementButtonIcon="pi pi-minus"
-              onChange={(e) => formik.setFieldValue("price", e.value)}
+          <div className="col-12 md:col-6 flex gap-2 flex-column">
+            <FormikTextArea
+              field="description"
+              label="Описание"
+              placeholder="Описание"
+              formik={formik}
             />
-            <div className="validation-form-error">
-              {formik.errors["price"]}
-            </div>
           </div>
 
-          <div className="col-12 md:col-6 mb-4 flex gap-2 flex-column">
-            <label htmlFor={"description"} className="font-medium">
-              Описание
-            </label>
-            <textarea
-              id={"description"}
-              value={formik.values["description"]}
-              onChange={(e) =>
-                formik.setFieldValue("description", e.target.value)
-              }
-              className="p-inputtextarea p-inputtext p-component p-inputtextarea-resizable h-full"
-            ></textarea>
-            <div className="validation-form-error">
-              {formik.errors["description"]}
-            </div>
-          </div>
-
-          <FormImageSelect formik={formik} field="image" />
+          <FormikImageSelect formik={formik} field="image" />
 
           <Button
             type="submit"

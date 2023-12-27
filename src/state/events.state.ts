@@ -54,11 +54,13 @@ export const useEventsState = create<UseEvents, [["zustand/immer", never]]>(
           ...data,
           image: uploadedImage,
           participants: [],
-          rewards: data.rewards.map((item) => ({ id: item })),
-          participationOptions: data.rewards.map((item) => ({ id: item })),
+          participationOptions: data.participationOptions.map((item) => ({
+            ...item,
+            reward: { id: item.reward! },
+          })),
         };
 
-        console.log("body", body);
+        console.log("CREATE EVENT DTO: ", body);
 
         const createdEvent = await EventsService.createEvent(body);
 
@@ -99,13 +101,9 @@ export const useEventsState = create<UseEvents, [["zustand/immer", never]]>(
         const body = {
           ...data,
           image: uploadedImage,
-          participationOptions: data.participationOptions!.map((item) => ({
-            id: item,
-          })),
-          rewards: data.rewards!.map((item) => ({ id: item })),
         };
 
-        console.log("update event body", body);
+        console.log("UPDATE EVENT DTO", body);
 
         const updatedEvent = await EventsService.updateEvent(id, body);
         console.log(updatedEvent);

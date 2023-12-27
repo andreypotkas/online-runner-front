@@ -6,7 +6,7 @@ import * as Yup from "yup";
 
 import { Button } from "primereact/button";
 
-import MemoizedBaseInput from "@/components/shared/Form/FormInput/FormInput";
+import MemoizedBaseInput from "@/components/shared/Formik/FormikTextInput/FormikTextInput";
 import { AuthFormInitialValues } from "@/pages/Auth/types/auth.types";
 import { RegisterData, useAuthState } from "@/state/auth.state";
 

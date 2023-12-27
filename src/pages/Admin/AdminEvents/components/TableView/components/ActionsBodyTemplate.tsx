@@ -30,12 +30,13 @@ function ActionsBodyTemplate({ product, setFormProps }: Props) {
   const handleUpdate = (product: EventEntity) => {
     const initialValues = {
       ...product,
-      participationOptions: product.participationOptions.map((item) => item.id),
+      participationOptions: product.participationOptions.map((item) => ({
+        ...item,
+        reward: item.reward.id,
+      })),
       status: product.status.id,
-      rewards: product.rewards.map((item) => item.id),
       category: product.category.id,
     };
-    console.log(initialValues);
 
     setFormProps({ initialValues, visible: true, type: "update" });
   };

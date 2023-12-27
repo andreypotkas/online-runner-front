@@ -4,40 +4,25 @@ import { FormikProps } from "formik";
 import { DropdownChangeEvent } from "primereact/dropdown";
 import { MultiSelect } from "primereact/multiselect";
 
-import { EventRewardEntity } from "@/types/entities/eventReward.type";
+import { ParticipationOptionsEnum } from "@/types/entities/event.type";
 
-import "./FormMultiSelect.scss";
+type Item = { name: string; code: ParticipationOptionsEnum };
 
 export type Props = {
-  items: EventRewardEntity[];
+  items: Item[];
   label: string;
   field: string;
   formik: FormikProps<any>;
+  placeholder: string;
 };
 
-export default function FormMultiSelectTemplate({
+export default function FormikMultiSelect({
   items,
   label,
   field,
   formik,
+  placeholder,
 }: Props) {
-  const itemTemplate = (option: EventRewardEntity) => {
-    if (!option) return;
-    return (
-      <div className="flex align-items-center gap-2">
-        <img
-          className="shadow-2 border-round"
-          src={option.image}
-          alt="reward"
-          width={50}
-          height={50}
-        />
-        <span>{option.name}</span>
-        <span>{option.price} р.</span>
-      </div>
-    );
-  };
-
   return (
     <div className="col-12 md:col-6 mb-4 flex gap-2 flex-column">
       <span className="font-medium">{label}</span>
@@ -47,14 +32,19 @@ export default function FormMultiSelectTemplate({
           formik.setFieldValue(field, e.value)
         }
         options={items}
-        optionValue="id"
+        optionValue="code"
         optionLabel="name"
+        itemTemplate={(item) => <span key={Date.now()}>{item.name}</span>}
         display="chip"
-        itemTemplate={itemTemplate}
-        placeholder="Выберите награды"
+        placeholder={placeholder}
         maxSelectedLabels={4}
         className="w-full"
+        dataKey={Date.now() + ""}
       />
+
+      <span className="validation-form-error">
+        <>{formik.errors[field]}</>
+      </span>
     </div>
   );
 }

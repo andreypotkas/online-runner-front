@@ -5,7 +5,7 @@ import { ConfirmDialog } from "primereact/confirmdialog";
 import { DataTable } from "primereact/datatable";
 
 import { useEventsState } from "@/state/events.state";
-import { EventEntity, EventFormProps } from "@/types/entities/event.type";
+import { EventFormProps } from "@/types/entities/event.type";
 
 import MemoizedActionsBodyTemplate from "./components/ActionsBodyTemplate";
 import MemoizedImageBodyTemplate from "./components/ImageBodyTemplate";
@@ -17,10 +17,6 @@ type Props = {
 
 function TableView({ setFormProps }: Props) {
   const { events, getAll } = useEventsState();
-
-  const dateBodyTemplate = (product: EventEntity) => {
-    return new Date(product.createdAt).toLocaleDateString();
-  };
 
   const footer = `Всего ${events ? events.length : 0} наград.`;
 
@@ -61,7 +57,10 @@ function TableView({ setFormProps }: Props) {
           body={(data) => data.participants.length}
         ></Column>
 
-        <Column header="Дата создания" body={dateBodyTemplate}></Column>
+        <Column
+          header="Дата создания"
+          body={(product) => new Date(product.createdAt).toLocaleDateString()}
+        ></Column>
 
         <Column
           header="Действия"

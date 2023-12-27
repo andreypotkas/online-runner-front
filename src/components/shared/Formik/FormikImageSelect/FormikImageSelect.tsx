@@ -12,25 +12,14 @@ type Props = {
   field: string;
 };
 
-export default function FormImageSelect({ formik, field }: Props) {
+export default function FormikImageSelect({ formik, field }: Props) {
   const fileUploadRef = useRef<FileUpload>(null);
   const image = formik.values.image;
 
   const headerTemplate = (options: FileUploadHeaderTemplateOptions) => {
     const { className, chooseButton } = options;
 
-    return (
-      <div
-        className={className}
-        style={{
-          backgroundColor: "transparent",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        {chooseButton}
-      </div>
-    );
+    return <div className={className}>{chooseButton}</div>;
   };
 
   const itemTemplate = (inFile: object) => {
@@ -42,7 +31,7 @@ export default function FormImageSelect({ formik, field }: Props) {
           alt={file.name}
           role="presentation"
           src={(file as any).objectURL}
-          className="w-30rem h-20rem"
+          className="w-20rem h-10rem"
         />
       </div>
     );
@@ -55,7 +44,7 @@ export default function FormImageSelect({ formik, field }: Props) {
           alt={"reward image"}
           role="presentation"
           src={image}
-          className="w-30rem h-20rem"
+          className="w-20rem h-10rem"
         />
       </div>
     );
@@ -90,7 +79,7 @@ export default function FormImageSelect({ formik, field }: Props) {
   };
 
   return (
-    <div className="col-12 md:col-6 mb-4 flex gap-2 flex-column">
+    <div className="col-12 md:col-6 flex gap-2 flex-column">
       <span className="font-medium">{"Изображение"}</span>
       <FileUpload
         ref={fileUploadRef}
